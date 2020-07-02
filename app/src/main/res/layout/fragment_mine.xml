@@ -64,8 +64,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/mine_line_view"
                 app:layout_constraintEnd_toStartOf="@+id/mine_line_view"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/mine_line_view"
-                app:typeface="fzlLTypeface" />
+                app:layout_constraintTop_toTopOf="@+id/mine_line_view" />
 
             <TextView
                 android:id="@+id/mine_cache_tv"
@@ -81,7 +80,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/mine_line_view"
                 app:layout_constraintTop_toTopOf="@+id/mine_line_view"
-                app:typeface="fzlLTypeface" />
+               />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -147,7 +146,6 @@
                     android:paddingEnd="5dp"
                     android:textColor="@color/color_grayDark"
                     android:textSize="11sp"
-                    app:typeface="fzlLTypeface"
                     tools:text="Version 6.3.0" />
             </LinearLayout>
 
