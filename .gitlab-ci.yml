@@ -1,0 +1,38 @@
+image: gitlab-ci-android:V2 # 用来编译 android 项目的镜像
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false" # 禁用 gradle 守护进程
+
+before_script:
+  #  配置 gradle 的缓存目录
+  - export GRADLE_USER_HOME=/cache/.gradle
+  #  获取权限
+  - chmod +x ./gradlew
+  - chmod +x ./update-version-code.sh
+
+stages:
+  - build
+
+# 提交代码自动编译
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - ./gradlew assembleDebug
+  tags:
+    - android
+
+# 构建测试包
+qa:
+  stage: build
+  only:
+    - qa
+  script:
+    - ./gradlew assembleDebug
+    - sh -x /cache/deploy-android.sh
+  artifacts:
+    paths:
+      - app/build/outputs/apk/debug/
+  tags:
+    - android

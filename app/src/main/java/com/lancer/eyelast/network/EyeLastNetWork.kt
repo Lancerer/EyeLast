@@ -13,7 +13,15 @@ class EyeLastNetWork {
         HttpControl.getInstance(HttpControl.BASE_URL).create(MainPageApiService::class.java)
 
 
+    /**
+     * 推送
+     */
     fun fetchPushMessage(url: String) = mainPageService.getPushMessage(url)
+
+    /**
+     * 日报
+     */
+    fun fetchDaily(url: String) = mainPageService.getDaily(url)
 
 
     companion object {

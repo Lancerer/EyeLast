@@ -29,6 +29,11 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
         fun newInstance() = PushFragment()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.pushMultiple.showLoading()
+
+    }
     private var nextPageUrl: String? = null
     private val viewModel by lazy {
         ViewModelProvider(
@@ -80,6 +85,7 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
 
     inner class MyListener : OnNextWithErrorListener<PushMessage> {
         override fun onNext(response: PushMessage?) {
+            binding.pushMultiple.showContent()
             if (response?.itemList == null) {
                 binding.pushMultiple.showEmpty()
                 return

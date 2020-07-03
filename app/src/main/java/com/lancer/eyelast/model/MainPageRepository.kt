@@ -1,5 +1,6 @@
 package com.lancer.eyelast.model
 
+import com.lancer.eyelast.bean.Daily
 import com.lancer.eyelast.bean.PushMessage
 import com.lancer.eyelast.model.dao.MainPageDao
 import com.lancer.eyelast.network.EyeLastNetWork
@@ -11,11 +12,18 @@ import io.reactivex.Observable
  * @des 主页界面，主要包含：（首页，社区，通知，我的），对应的数据管理,两部分：数据库和网络数据
  * @Date 2020/7/2 15:51
  */
-class MainPageRepository private constructor(private val mainPageDao: MainPageDao, private val eyeLastNetWork: EyeLastNetWork) {
+class MainPageRepository private constructor(
+    private val mainPageDao: MainPageDao,
+    private val eyeLastNetWork: EyeLastNetWork
+) {
 
 
-     fun requestPushMessage(url: String): Observable<PushMessage?>? {
+    fun requestPushMessage(url: String): Observable<PushMessage?>? {
         return eyeLastNetWork.fetchPushMessage(url).compose(SchedulerUtils.ioToMain())
+    }
+
+    fun requestDaily(url: String): Observable<Daily>? {
+        return eyeLastNetWork.fetchDaily(url).compose(SchedulerUtils.ioToMain())
     }
 
 

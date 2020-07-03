@@ -7,29 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lancer.eyelast.R
+import com.lancer.eyelast.base.BaseFragment
+import com.lancer.eyelast.databinding.FragmentDailyBinding
 
 /**
  * 日报
  */
-class DailyFragment : Fragment() {
+class DailyFragment : BaseFragment<FragmentDailyBinding>() {
 
     companion object {
         fun newInstance() = DailyFragment()
     }
 
-    private lateinit var viewModel: DailyViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_daily, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.dailyMultiple.showLoading()
+    }
+    override fun initView() {
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DailyViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initData() {
     }
+
+    override fun initLayout(): Int =R.layout.fragment_daily
 
 }
