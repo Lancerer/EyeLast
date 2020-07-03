@@ -60,7 +60,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //liveData
-    implementation 'android.arch.lifecycle:livedata:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     //rxlifecycle2
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     //协程
@@ -88,7 +88,7 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
     //adapter
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.1'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     //GSYVideoPlayer
     implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
 }

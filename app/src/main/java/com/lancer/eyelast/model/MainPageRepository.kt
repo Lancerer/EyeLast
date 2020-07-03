@@ -1,7 +1,10 @@
 package com.lancer.eyelast.model
 
+import com.lancer.eyelast.bean.PushMessage
 import com.lancer.eyelast.model.dao.MainPageDao
 import com.lancer.eyelast.network.EyeLastNetWork
+import com.lancer.eyelast.network.scheduler.SchedulerUtils
+import io.reactivex.Observable
 
 /**
  * @author lancer
@@ -9,6 +12,12 @@ import com.lancer.eyelast.network.EyeLastNetWork
  * @Date 2020/7/2 15:51
  */
 class MainPageRepository private constructor(private val mainPageDao: MainPageDao, private val eyeLastNetWork: EyeLastNetWork) {
+
+
+     fun requestPushMessage(url: String): Observable<PushMessage?>? {
+        return eyeLastNetWork.fetchPushMessage(url).compose(SchedulerUtils.ioToMain())
+    }
+
 
     companion object {
         private var repository: MainPageRepository? = null

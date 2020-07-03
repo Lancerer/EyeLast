@@ -10,7 +10,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
  abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
-    //    protected var mStatusView: MultipleStatusView? = null
     protected lateinit var binding: V
     var name = "base"
     override fun onCreate(savedInstanceState: Bundle?) {

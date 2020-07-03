@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
-    //    protected var mStatusView: MultipleStatusView? = null
     protected lateinit var binding: V
     var name = "base"
 
