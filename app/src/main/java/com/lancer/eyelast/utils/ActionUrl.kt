@@ -34,7 +34,7 @@ object ActionUrl {
      * @param actionUrl 待处理的url
      * @param toastTitle toast提示标题 or 没有匹配的事件需要处理，给出的提示标题。
      */
-    fun process(activity: FragmentActivity, actionUrl: String?, toastTitle: String = "") {
+    fun process(activity: Activity, actionUrl: String?, toastTitle: String = "") {
         if (actionUrl == null) return
         val decodeUrl = URLDecoder.decode(actionUrl, "UTF-8")
         when {

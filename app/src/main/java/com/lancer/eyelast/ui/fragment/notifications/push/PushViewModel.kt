@@ -9,10 +9,6 @@ import com.lancer.eyelast.network.scheduler.BaseSubscriber
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 
 class PushViewModel(private val repository: MainPageRepository) : ViewModel() {
-
-    var nextPageUrl: String? = null
-    private var requestParamLiveData = MutableLiveData<String>()
-
     /**
      * 可以使用liveData加上携程替换
      */
@@ -30,13 +26,5 @@ class PushViewModel(private val repository: MainPageRepository) : ViewModel() {
                 }
             })
         )
-    }
-
-    fun onRefresh() {
-        requestParamLiveData.value = MainPageApiService.PUSHMESSAGE_URL
-    }
-
-    fun onLoadMore() {
-        requestParamLiveData.value = nextPageUrl ?: ""
     }
 }

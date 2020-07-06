@@ -1,4 +1,4 @@
-package com.lancer.eyelast.ui.fragment.home.daily.provider;
+package com.lancer.eyelast.ui.provider;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.lancer.eyelast.Const;
 import com.lancer.eyelast.R;
 import com.lancer.eyelast.bean.Daily;
+import com.lancer.eyelast.ui.fragment.home.daily.DailyFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +18,12 @@ import org.jetbrains.annotations.NotNull;
  * @des
  * @Date 2020/7/3 16:28
  */
-class FollowCardProvider extends BaseItemProvider<Daily.Item> {
+public class FollowCardViewHolder extends BaseItemProvider<Daily.Item> {
+    private DailyFragment dailyFragment;
+
+    public FollowCardViewHolder(DailyFragment dailyFragment) {
+        this.dailyFragment = dailyFragment;
+    }
 
     @Override
     public int getItemViewType() {

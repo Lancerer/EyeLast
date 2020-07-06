@@ -32,14 +32,14 @@ import androidx.fragment.app.Fragment
         super.onActivityCreated(savedInstanceState)
         Log.d(name, "onActivityCreated")
 
+        initView()
+        initData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(name, "onViewCreated")
 
-        initView()
-        initData()
     }
 
     override fun onStart() {

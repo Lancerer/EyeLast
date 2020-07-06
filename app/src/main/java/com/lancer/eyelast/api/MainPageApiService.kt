@@ -1,6 +1,7 @@
 package com.lancer.eyelast.api
 
 import com.lancer.eyelast.bean.Daily
+import com.lancer.eyelast.bean.HomePageRecommend
 import com.lancer.eyelast.bean.PushMessage
 import com.lancer.eyelast.network.HttpControl
 import io.reactivex.Observable
@@ -28,6 +29,12 @@ interface MainPageApiService {
     @GET
     fun getDaily(@Url url: String):Observable<Daily>
 
+
+    /**
+     * 首页-推荐列表
+     */
+    @GET
+    fun getHRecommend(@Url url: String): Observable<HomePageRecommend>
 
     companion object {
 

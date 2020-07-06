@@ -83,7 +83,7 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
     override fun initLayout(): Int = R.layout.fragment_push
 
 
-    inner class MyListener : OnNextWithErrorListener<PushMessage> {
+   private inner class MyListener : OnNextWithErrorListener<PushMessage> {
         override fun onNext(response: PushMessage?) {
             binding.pushMultiple.showContent()
             if (response?.itemList == null) {

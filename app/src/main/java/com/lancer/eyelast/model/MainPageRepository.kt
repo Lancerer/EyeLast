@@ -1,6 +1,7 @@
 package com.lancer.eyelast.model
 
 import com.lancer.eyelast.bean.Daily
+import com.lancer.eyelast.bean.HomePageRecommend
 import com.lancer.eyelast.bean.PushMessage
 import com.lancer.eyelast.model.dao.MainPageDao
 import com.lancer.eyelast.network.EyeLastNetWork
@@ -24,6 +25,10 @@ class MainPageRepository private constructor(
 
     fun requestDaily(url: String): Observable<Daily>? {
         return eyeLastNetWork.fetchDaily(url).compose(SchedulerUtils.ioToMain())
+    }
+
+    fun requestRecommend(url: String): Observable<HomePageRecommend>? {
+        return eyeLastNetWork.fetchRecommend(url).compose(SchedulerUtils.ioToMain())
     }
 
 

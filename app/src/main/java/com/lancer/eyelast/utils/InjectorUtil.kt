@@ -3,6 +3,8 @@ package com.lancer.eyelast.utils
 import com.lancer.eyelast.model.MainPageRepository
 import com.lancer.eyelast.model.dao.EyeLastDatabase
 import com.lancer.eyelast.network.EyeLastNetWork
+import com.lancer.eyelast.ui.fragment.home.commend.CommendViewModelFactory
+import com.lancer.eyelast.ui.fragment.home.daily.DailyViewModelFactory
 import com.lancer.eyelast.ui.fragment.notifications.push.PushViewModelFactory
 
 /**
@@ -16,6 +18,20 @@ object InjectorUtil {
         EyeLastNetWork.getInstance()
     )
 
+    /**
+     * push
+     */
     fun getPushViewModelFactory() = PushViewModelFactory(getMainPageRepository())
+
+    /**
+     * daily
+     */
+    fun getDailyViewModelFactory() = DailyViewModelFactory(getMainPageRepository())
+
+
+    /**
+     * commend
+     */
+    fun getHomePageCommendViewModelFactory() = CommendViewModelFactory(getMainPageRepository())
 
 }

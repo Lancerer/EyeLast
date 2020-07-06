@@ -23,6 +23,11 @@ class EyeLastNetWork {
      */
     fun fetchDaily(url: String) = mainPageService.getDaily(url)
 
+    /**
+     * 推荐
+     */
+    fun fetchRecommend(url: String)=mainPageService.getHRecommend(url)
+
 
     companion object {
 
