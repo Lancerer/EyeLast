@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity.VideoActivity">
+        tools:context=".ui.activity.video.VideoActivity">
 
         <ImageView
             android:id="@+id/ivBlurredBg"
@@ -19,7 +19,7 @@
             android:scaleType="fitXY"
             tools:src="@drawable/bg_splash" />
 
-        <com.shuyu.gsyvideoplayer.video.GSYADVideoPlayer
+        <com.lancer.eyelast.widget.CoverVideoPlayer
             android:id="@+id/videoPlayer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/videoPlayerSize" />

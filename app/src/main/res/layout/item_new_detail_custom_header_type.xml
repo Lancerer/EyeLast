@@ -101,7 +101,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_share_white_20dp" />
 
-            <com.eyepetizer.android.ui.common.view.TypefaceTextView
+            <TextView
                 android:id="@+id/tvShareCount"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -111,7 +111,6 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/whiteAlpha35"
                 android:textSize="13sp"
-                app:typeface="fzlLTypeface"
                 tools:text="0" />
 
             <ImageView
@@ -120,7 +119,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_cache_white_20dp" />
 
-            <com.eyepetizer.android.ui.common.view.TypefaceTextView
+            <TextView
                 android:id="@+id/tvCache"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -131,7 +130,7 @@
                 android:text="@string/cache"
                 android:textColor="@color/whiteAlpha35"
                 android:textSize="13sp"
-                app:typeface="fzlLTypeface" />
+               />
 
             <ImageView
                 android:id="@+id/ivFavorites"
@@ -139,7 +138,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_star_white_20dp" />
 
-            <com.eyepetizer.android.ui.common.view.TypefaceTextView
+            <TextView
                 android:id="@+id/tvFavorites"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -149,14 +148,13 @@
                 android:paddingTop="5dp"
                 android:text="@string/favorites"
                 android:textColor="@color/whiteAlpha35"
-                android:textSize="13sp"
-                app:typeface="fzlLTypeface" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/ivAvatar"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -166,7 +164,7 @@
         app:layout_constraintTop_toBottomOf="@id/clHeaderInfo"
         tools:src="@drawable/ic_avatar_gray_76dp" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/ivAvatarStar"
         android:layout_width="10dp"
         android:layout_height="10dp"
@@ -174,13 +172,11 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="1dp"
         android:src="@drawable/ic_star_white_15dp"
-        app:civ_border_color="@color/gray"
-        app:civ_border_width="1px"
-        app:civ_circle_background_color="@color/blue"
+
         app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
         app:layout_constraintEnd_toEndOf="@id/ivAvatar" />
 
-    <com.eyepetizer.android.ui.common.view.TypefaceTextView
+    <TextView
         android:id="@+id/tvAuthorDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -193,10 +189,10 @@
         app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
         app:layout_constraintEnd_toStartOf="@id/tvFollow"
         app:layout_constraintStart_toEndOf="@id/ivAvatar"
-        app:typeface="fzlLTypeface"
+
         tools:text="自由剪辑师/合作请联系…" />
 
-    <com.eyepetizer.android.ui.common.view.TypefaceTextView
+    <TextView
         android:id="@+id/tvAuthorName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -208,12 +204,11 @@
         app:layout_constraintBottom_toTopOf="@id/tvAuthorDescription"
         app:layout_constraintEnd_toEndOf="@id/tvAuthorDescription"
         app:layout_constraintStart_toStartOf="@id/tvAuthorDescription"
-        app:typeface="fzdb1Typeface"
         tools:text="广告裁判" />
 
-    <com.eyepetizer.android.ui.common.view.TypefaceTextView
+    <TextView
         android:id="@+id/tvFollow"
-        style="@style/Eyepetizer.FollowTextView"
+        style="@style/SettingTextView"
         android:layout_marginEnd="13dp"
         android:background="@drawable/shape_follow_radius_white_4dp_bg"
         android:textColor="@color/white"

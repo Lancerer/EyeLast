@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.VideoActivity"></activity>
+        <activity android:name=".ui.activity.video.VideoActivity"></activity>
         <activity android:name=".ui.activity.WebViewActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
         <activity

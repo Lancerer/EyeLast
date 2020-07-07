@@ -3,6 +3,8 @@ package com.lancer.eyelast.ui.fragment.notifications
 
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import com.google.android.material.appbar.AppBarLayout
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.base.BaseFragmentAdapter
@@ -31,7 +33,9 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
     override fun initView() {
         Log.d("TAG", "mTabList.size=${mTabList.size}")
         binding.notificationVp.adapter =
-            BaseFragmentAdapter(childFragmentManager, mFragmentList, mTabList)
+            BaseFragmentAdapter(childFragmentManager, mFragmentList, mTabList,
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+            )
         binding.notificationTabLayout.setupWithViewPager(binding.notificationVp)
     }
 

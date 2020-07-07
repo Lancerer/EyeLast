@@ -26,8 +26,17 @@ class EyeLastNetWork {
     /**
      * 推荐
      */
-    fun fetchRecommend(url: String)=mainPageService.getHRecommend(url)
+    fun fetchRecommend(url: String) = mainPageService.getHRecommend(url)
 
+    /**
+     * 视频详情-推荐列表
+     */
+    fun fetchVideoRecommendList(videoId: Long) = mainPageService.getVideoRecommendList(videoId)
+
+    /**
+     * 视频详情-评论列表
+     */
+    fun fetchVideoCommentList(url: String)=mainPageService.getVideoCommentList(url)
 
     companion object {
 

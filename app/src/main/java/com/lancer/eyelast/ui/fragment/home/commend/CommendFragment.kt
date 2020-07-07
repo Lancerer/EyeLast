@@ -58,16 +58,15 @@ class CommendFragment : BaseFragment<FragmentCommendBinding>() {
         binding.refreshLayout.setOnRefreshListener {
             //下拉刷新
             viewModel.requestRecommend(listener)
-
         }
         binding.refreshLayout.setOnLoadMoreListener {
             //上拉加载更多
             if (nextPageUrl != null) {
                 viewModel.requestRecommend(listener, nextPageUrl!!)
             } else {
+                binding.refreshLayout.finishLoadMoreWithNoMoreData()
                 binding.commendMultiple.showError()
             }
-
         }
     }
 
@@ -88,16 +87,20 @@ class CommendFragment : BaseFragment<FragmentCommendBinding>() {
                 binding.commendMultiple.showEmpty()
                 return
             }
-
-            if (binding.refreshLayout.state == RefreshState.None && binding.refreshLayout.state == RefreshState.Refreshing) {
+            nextPageUrl = response.nextPageUrl
+            if (binding.refreshLayout.state == RefreshState.None || binding.refreshLayout.state == RefreshState.Refreshing) {
                 dataList.clear()
                 dataList.addAll(response.itemList)
-            } else {
+            } else if (binding.refreshLayout.state == RefreshState.Loading) {
                 dataList.addAll(response.itemList)
                 adapter.notifyDataSetChanged()
             }
-            nextPageUrl = response.nextPageUrl
-            refreshLayout.closeHeaderOrFooter()
+
+            if (response.nextPageUrl.isNullOrEmpty()) {
+                binding.refreshLayout.finishLoadMoreWithNoMoreData()
+            } else {
+                binding.refreshLayout.closeHeaderOrFooter()
+            }
         }
 
         override fun onError(e: Throwable?) {

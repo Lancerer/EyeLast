@@ -11,12 +11,42 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
+/**
+ * @author lancer
+ * @des old
+ * @Date 2020/7/7 13:56
+ */
+abstract class OldBaseLazyFragment<V : ViewDataBinding> : Fragment() {
     protected lateinit var binding: V
-    var name = "base"
 
     private lateinit var mActivity: Activity
 
+    var name = "base"
+
+
+    /**
+     * 当前Fragment状态是否可见
+     */
+    private var isVisibleToUser: Boolean = false
+
+    /**
+     * 当前view是否创建
+     */
+    private var isViewCreated: Boolean = false
+
+    /**
+     * 是否是第一次加载数据
+     */
+    private var isFirstLoad: Boolean = true
+
+    /**
+     * isVisibleToUser:表示当前fragment是否当前对用户可见，执行顺序位于onAttach之前
+     */
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        this.isVisibleToUser = isVisibleToUser
+        onLazyLoad()
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as Activity
@@ -39,63 +69,29 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d(name, "onActivityCreated")
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(name, "onViewCreated")
+        isViewCreated = true
+        onLazyLoad()
+    }
+
+    private fun onLazyLoad() {
+        if (isVisibleToUser && isViewCreated && isFirstLoad) {
+            isFirstLoad = false
+            lazyLoadData()
+        }
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        Log.d(name, "onStart")
+    /**
+     * 加载数据方法
+     */
+    protected abstract fun lazyLoadData()
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(name, "onResume")
-        initView()
-        initData()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(name, "onPause")
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(name, "onStop")
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d(name, "onDestroyView")
-
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(name, "onDestroy")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d(name, "onDetach")
-
-    }
-
-    abstract fun initView()
-
-    abstract fun initData()
-
+    /**
+     * 加载布局
+     */
     abstract fun initLayout(): Int
+
 }

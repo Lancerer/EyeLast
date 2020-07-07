@@ -17,15 +17,16 @@ class BaseFragmentAdapter : FragmentPagerAdapter {
     private var fragmentList: List<Fragment>? = ArrayList()
     private var mTitles: List<String>? = null
 
-    constructor(fm: FragmentManager, fragmentList: List<Fragment>) : super(fm) {
+    constructor(fm: FragmentManager, fragmentList: List<Fragment>,behavior:Int) : super(fm,behavior) {
         this.fragmentList = fragmentList
     }
 
     constructor(
         fm: FragmentManager,
         fragmentList: List<Fragment>,
-        mTitles: List<String>
-    ) : super(fm) {
+        mTitles: List<String>,
+        behavior: Int
+    ) : super(fm, behavior) {
         this.mTitles = mTitles
         setFragments(fm, fragmentList, mTitles)
     }

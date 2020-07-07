@@ -1,12 +1,12 @@
 package com.lancer.eyelast.api
 
-import com.lancer.eyelast.bean.Daily
-import com.lancer.eyelast.bean.HomePageRecommend
-import com.lancer.eyelast.bean.PushMessage
+import com.lancer.eyelast.bean.*
 import com.lancer.eyelast.network.HttpControl
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 import retrofit2.http.Url
 
 /**
@@ -27,7 +27,7 @@ interface MainPageApiService {
      * 首页-日报列表
      */
     @GET
-    fun getDaily(@Url url: String):Observable<Daily>
+    fun getDaily(@Url url: String): Observable<Daily>
 
 
     /**
@@ -35,6 +35,30 @@ interface MainPageApiService {
      */
     @GET
     fun getHRecommend(@Url url: String): Observable<HomePageRecommend>
+
+
+    /**
+     * Video
+     * *************************************************
+     */
+    /**
+     * 视频详情-视频信息
+     */
+    @GET("api/v2/video/{id}")
+    fun getVideoBeanForClient(@Path("id") videoId: Long): Observable<VideoBeanForClient>
+
+    /**
+     * 视频详情-推荐列表
+     */
+    @GET("api/v4/video/related")
+    fun getVideoRecommendList(@Query("id") videoId: Long): Observable<VideoRelated>
+
+    /**
+     * 视频详情-评论列表
+     */
+    @GET
+    fun getVideoCommentList(@Url url: String): Observable<VideoReplies>
+
 
     companion object {
 

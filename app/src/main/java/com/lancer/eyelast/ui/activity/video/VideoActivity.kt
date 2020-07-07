@@ -1,4 +1,4 @@
-package com.lancer.eyelast.ui.activity
+package com.lancer.eyelast.ui.activity.video
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
