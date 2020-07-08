@@ -13,13 +13,11 @@ import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.Daily
 import com.lancer.eyelast.bean.HomePageRecommend
-import com.lancer.eyelast.databinding.FragmentCommendBinding
 import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 import com.lancer.eyelast.utils.InjectorUtil
 import com.scwang.smart.refresh.layout.constant.RefreshState
-import kotlinx.android.synthetic.main.fragment_commend.*
 
 /**
  * 推荐界面

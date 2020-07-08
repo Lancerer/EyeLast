@@ -16,12 +16,7 @@
 
 package com.lancer.eyelast
 
-/**
- * 项目所有全局通用常量的管理类。
- *
- * @author vipyinzhiwei
- * @since  2020/5/31
- */
+
 interface Const {
 
     interface ItemViewType {

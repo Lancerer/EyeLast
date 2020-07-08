@@ -22,12 +22,7 @@ import android.view.MotionEvent
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.abs
 
-/**
- * 处理嵌套ViewPager时，横向滑动冲突。
- *
- * @author vipyinzhiwei
- * @since  2020/5/21
- */
+
 class HorizontalRecyclerView : RecyclerView {
 
     private var lastX = 0f

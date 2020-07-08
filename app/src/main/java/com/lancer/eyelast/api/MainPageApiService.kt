@@ -15,10 +15,6 @@ import retrofit2.http.Url
  * @Date 2020/7/3 8:50
  */
 interface MainPageApiService {
-
-
-
-
     /**
      * 首页模块-日报列表
      */
