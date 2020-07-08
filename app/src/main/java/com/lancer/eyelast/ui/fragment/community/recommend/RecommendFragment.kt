@@ -13,6 +13,7 @@ import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.CommunityRecommend
 import com.lancer.eyelast.databinding.FragmentRecommendBinding
+import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.extension.dp2px
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
@@ -21,7 +22,7 @@ import com.lancer.eyelast.utils.InjectorUtil
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
 
-class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
+class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(),
     OnNextWithErrorListener<CommunityRecommend> {
     init {
         name = javaClass.simpleName
@@ -64,20 +65,20 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recommendMultiple.showLoading()
+        binding.multipleStatusView.showLoading()
     }
 
     override fun initView() {
         mAdapter = RecommendAdapter(this, dataList)
-        binding.recommendRecycler.adapter = mAdapter
+        binding.recyclerView.adapter = mAdapter
         val mainLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mainLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        binding.recommendRecycler.layoutManager =mainLayoutManager
+        binding.recyclerView.layoutManager =mainLayoutManager
 
-        binding.recommendRefresh.setOnLoadMoreListener {
+        binding.refreshLayout.setOnLoadMoreListener {
             viewModel.requestRecommend(this, nextPageUrl!!)
         }
-        binding.recommendRefresh.setOnRefreshListener {
+        binding.refreshLayout.setOnRefreshListener {
             viewModel.requestRecommend(this)
         }
     }
@@ -86,20 +87,19 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
         viewModel.requestRecommend(this)
     }
 
-    override fun initLayout(): Int = R.layout.fragment_recommend
 
     override fun onNext(response: CommunityRecommend?) {
-        binding.recommendMultiple.showContent()
+        binding.multipleStatusView.showContent()
         response?.let {
             nextPageUrl = it.nextPageUrl
 
             if (it.itemList.isEmpty()) {
-                binding.recommendMultiple.showEmpty()
+                binding.multipleStatusView.showEmpty()
                 return
             }
         }
 
-        when (binding.recommendRefresh.state) {
+        when (binding.refreshLayout.state) {
             RefreshState.None, RefreshState.Refreshing -> {
                 dataList.clear()
                 dataList.addAll(response!!.itemList)
@@ -112,16 +112,19 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
             }
         }
         if (response?.nextPageUrl.isNullOrEmpty()) {
-            binding.recommendRefresh.finishLoadMoreWithNoMoreData()
+            binding.refreshLayout.finishLoadMoreWithNoMoreData()
         } else {
-            binding.recommendRefresh.closeHeaderOrFooter()
+            binding.refreshLayout.closeHeaderOrFooter()
         }
     }
 
     override fun onError(e: Throwable?) {
-        binding.recommendMultiple.showError()
+        binding.multipleStatusView.showError()
         Log.d(javaClass.simpleName, ExceptionHandle.handleException(e!!))
     }
+
+
+    override fun initLayout(): Int = R.layout.layout_common_multiple_refresh_recycler
 
 
 }

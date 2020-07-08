@@ -37,6 +37,10 @@ class MainPageRepository private constructor(
         return eyeLastNetWork.fetchCommunityRecommend(url).compose(SchedulerUtils.ioToMain())
     }
 
+    fun requestDiscovery(url: String): Observable<Discovery> {
+        return eyeLastNetWork.fetchDiscovery(url).compose(SchedulerUtils.ioToMain())
+    }
+
 
     companion object {
         private var repository: MainPageRepository? = null

@@ -9,14 +9,16 @@ import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.Daily
 import com.lancer.eyelast.databinding.FragmentDailyBinding
+import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 import com.lancer.eyelast.utils.InjectorUtil
+import com.scwang.smart.refresh.layout.constant.RefreshState
 
 /**
  * 日报
  */
-class DailyFragment : BaseFragment<FragmentDailyBinding>() {
+class DailyFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() {
 
 
     private val viewModel by lazy {
@@ -34,31 +36,19 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.dailyMultiple.showLoading()
+        binding.multipleStatusView.showLoading()
     }
 
     override fun initView() {
         adapter = DailyAdapter(this)
-        binding.dailyRecycler.layoutManager = LinearLayoutManager(activity)
-        binding.dailyRecycler.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.adapter = adapter
 
-        //加载更多逻辑
-        val loadMoreModule = adapter.loadMoreModule
-        loadMoreModule.isEnableLoadMore = true
-        loadMoreModule.isAutoLoadMore = true
-        loadMoreModule.isEnableLoadMoreIfNotFullPage = true
-        loadMoreModule.enableLoadMoreEndClick = true
-        loadMoreModule.setOnLoadMoreListener {
-            if (nextPageUrl == null) {
-                adapter.loadMoreModule.loadMoreFail()
-                Log.d("nextUrl","loadMoreFail")
-
-            } else {
-                Log.d("nextUrl","nextUrl==${nextPageUrl}")
-                viewModel.requestDaily(listener, nextPageUrl!!)
-                //加载完成要调用该方法，表示本次加载更多完毕
-                loadMoreModule.loadMoreComplete()
-            }
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.requestDaily(listener)
+        }
+        binding.refreshLayout.setOnLoadMoreListener {
+            viewModel.requestDaily(listener, nextPageUrl!!)
         }
 
     }
@@ -67,26 +57,38 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>() {
         viewModel.requestDaily(listener)
     }
 
-    override fun initLayout(): Int = R.layout.fragment_daily
-
-    private val dailyList = mutableListOf<Daily.Item>()
 
     inner class MyListener : OnNextWithErrorListener<Daily> {
         override fun onNext(response: Daily?) {
-            binding.dailyMultiple.showContent()
+            nextPageUrl = response?.nextPageUrl
+            binding.multipleStatusView.showContent()
             if (response?.itemList == null) {
-                binding.dailyMultiple.showEmpty()
+                binding.multipleStatusView.showEmpty()
                 return
             }
-
-            dailyList.addAll(response.itemList)
-            adapter.addData(dailyList)
-
-            nextPageUrl = response.nextPageUrl
+            when (binding.refreshLayout.state) {
+                RefreshState.None, RefreshState.Refreshing -> {
+                    adapter.data.clear()
+                    adapter.addData(response.itemList)
+                }
+                RefreshState.Loading -> {
+                    adapter.addData(response.itemList)
+                }
+                else -> {
+                }
+            }
+            if (response.nextPageUrl.isNullOrEmpty()) {
+                binding.refreshLayout.finishLoadMoreWithNoMoreData()
+            } else {
+                binding.refreshLayout.closeHeaderOrFooter()
+            }
         }
 
         override fun onError(e: Throwable?) {
             Log.d("TAG", ExceptionHandle.handleException(e!!))
         }
     }
+
+    override fun initLayout(): Int = R.layout.layout_common_multiple_refresh_recycler
+
 }

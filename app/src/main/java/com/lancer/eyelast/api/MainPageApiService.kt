@@ -17,11 +17,7 @@ import retrofit2.http.Url
 interface MainPageApiService {
 
 
-    /**
-     * 通知模块-推送列表
-     */
-    @GET
-    fun getPushMessage(@Url url: String): Observable<PushMessage>
+
 
     /**
      * 首页模块-日报列表
@@ -35,6 +31,12 @@ interface MainPageApiService {
      */
     @GET
     fun getHRecommend(@Url url: String): Observable<HomePageRecommend>
+    /**
+     * 首页-发现列表
+     */
+    @GET
+    fun getDiscovery(@Url url: String): Observable<Discovery>
+
 
     /**
      * 社区模块-关注列表
@@ -47,6 +49,12 @@ interface MainPageApiService {
      */
     @GET
     fun getCommunityRecommend(@Url url: String): Observable<CommunityRecommend>
+
+    /**
+     * 通知模块-推送列表
+     */
+    @GET
+    fun getPushMessage(@Url url: String): Observable<PushMessage>
     /**
      * Video
      * *************************************************

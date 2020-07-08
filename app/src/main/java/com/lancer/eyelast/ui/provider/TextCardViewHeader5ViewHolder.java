@@ -16,12 +16,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class TextCardViewHeader5ViewHolder extends BaseItemProvider<Daily.Item> {
     private DailyFragment dailyFragment;
-
-
-
     public TextCardViewHeader5ViewHolder(DailyFragment dailyFragment) {
         this.dailyFragment = dailyFragment;
-
     }
 
     @Override

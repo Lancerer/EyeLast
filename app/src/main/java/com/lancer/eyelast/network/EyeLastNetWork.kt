@@ -48,6 +48,12 @@ class EyeLastNetWork {
      */
     fun fetchCommunityRecommend(url: String) = mainPageService.getCommunityRecommend(url)
 
+    /**
+     * 首页模块-发现列表
+     */
+    fun fetchDiscovery(url: String) = mainPageService.getDiscovery(url)
+
+
     companion object {
 
         private var network: EyeLastNetWork? = null

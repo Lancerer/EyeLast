@@ -9,6 +9,7 @@ import com.lancer.eyelast.ui.fragment.community.follow.FollowViewModelFactory
 import com.lancer.eyelast.ui.fragment.community.recommend.RecommendViewModelFactory
 import com.lancer.eyelast.ui.fragment.home.commend.CommendViewModelFactory
 import com.lancer.eyelast.ui.fragment.home.daily.DailyViewModelFactory
+import com.lancer.eyelast.ui.fragment.home.discovery.DiscoveryViewModelFactory
 import com.lancer.eyelast.ui.fragment.notifications.push.PushViewModelFactory
 
 /**
@@ -55,5 +56,10 @@ object InjectorUtil {
      * community-commend
      */
     fun getCommunityRecommendViewModelFactory() = RecommendViewModelFactory(getMainPageRepository())
+
+    /**
+     * home-discovery
+     */
+    fun getDiscoveryViewModelFactory() = DiscoveryViewModelFactory(getMainPageRepository())
 
 }

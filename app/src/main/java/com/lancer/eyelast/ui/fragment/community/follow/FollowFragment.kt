@@ -9,12 +9,13 @@ import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.Follow
 import com.lancer.eyelast.databinding.FragmentFollowBinding
+import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 import com.lancer.eyelast.utils.InjectorUtil
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
-class FollowFragment : BaseFragment<FragmentFollowBinding>(), OnNextWithErrorListener<Follow> {
+class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(), OnNextWithErrorListener<Follow> {
 
 
     private lateinit var mAdapter: FollowAdapter
@@ -31,17 +32,17 @@ class FollowFragment : BaseFragment<FragmentFollowBinding>(), OnNextWithErrorLis
     private var nextPageUrl: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.followMultiple.showLoading()
+        binding.multipleStatusView.showLoading()
     }
 
     override fun initView() {
         mAdapter = FollowAdapter(this, dataList)
-        binding.followRecycler.layoutManager = LinearLayoutManager(activity)
-        binding.followRecycler.adapter = mAdapter
-        binding.followRefresh.setOnLoadMoreListener {
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.adapter = mAdapter
+        binding.refreshLayout.setOnLoadMoreListener {
             viewModel.requestFollowList(this, nextPageUrl!!)
         }
-        binding.followRefresh.setOnRefreshListener {
+        binding.refreshLayout.setOnRefreshListener {
             viewModel.requestFollowList(this)
         }
     }
@@ -51,18 +52,18 @@ class FollowFragment : BaseFragment<FragmentFollowBinding>(), OnNextWithErrorLis
     }
 
     override fun onNext(follow: Follow?) {
-        binding.followMultiple.showContent()
+        binding.multipleStatusView.showContent()
 
         follow?.let {
             nextPageUrl = it.nextPageUrl
 
             if (it.itemList.isEmpty()) {
-                binding.followMultiple.showEmpty()
+                binding.multipleStatusView.showEmpty()
                 return
             }
         }
 
-        when (binding.followRefresh.state) {
+        when (binding.refreshLayout.state) {
             RefreshState.None, RefreshState.Refreshing -> {
                 dataList.clear()
                 dataList.addAll(follow!!.itemList)
@@ -76,19 +77,19 @@ class FollowFragment : BaseFragment<FragmentFollowBinding>(), OnNextWithErrorLis
             }
         }
         if (follow?.nextPageUrl.isNullOrEmpty()) {
-            binding.followRefresh.finishLoadMoreWithNoMoreData()
+            binding.refreshLayout.finishLoadMoreWithNoMoreData()
         } else {
-            binding.followRefresh.closeHeaderOrFooter()
+            binding.refreshLayout.closeHeaderOrFooter()
         }
 
     }
 
     override fun onError(e: Throwable?) {
-        binding.followMultiple.showError()
+        binding.multipleStatusView.showError()
         Log.d(javaClass.simpleName, ExceptionHandle.handleException(e!!))
     }
 
-    override fun initLayout(): Int = R.layout.fragment_follow
+    override fun initLayout(): Int = R.layout.layout_common_multiple_refresh_recycler
 
 
 }

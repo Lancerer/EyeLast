@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
     </data>
 
     <com.classic.common.MultipleStatusView
-        android:id="@+id/recommend_multiple"
+        android:id="@+id/multipleStatusView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.fragment.community.recommend.RecommendFragment">
+        android:layout_height="match_parent">
 
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/recommend_refresh"
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recommend_recycler"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
     </com.classic.common.MultipleStatusView>
-
 </layout>

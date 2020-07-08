@@ -15,12 +15,13 @@ import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.PushMessage
 import com.lancer.eyelast.databinding.FragmentPushBinding
+import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 import com.lancer.eyelast.ui.fragment.notifications.letter.LetterFragment
 import com.lancer.eyelast.utils.InjectorUtil
 
-class PushFragment : BaseFragment<FragmentPushBinding>() {
+class PushFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() {
     init {
         name = PushFragment::class.java.simpleName
     }
@@ -31,7 +32,7 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.pushMultiple.showLoading()
+        binding.multipleStatusView.showLoading()
 
     }
     private var nextPageUrl: String? = null
@@ -46,8 +47,8 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
     private val listener = MyListener()
     override fun initView() {
         mAdapter = PushAdapter()
-        binding.pushRv.layoutManager = LinearLayoutManager(context)
-        binding.pushRv.adapter = mAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = mAdapter
 
         //加载更多逻辑
         val loadMoreModule = mAdapter.loadMoreModule
@@ -80,14 +81,13 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
         viewModel.requestPush(listener)
     }
 
-    override fun initLayout(): Int = R.layout.fragment_push
 
 
    private inner class MyListener : OnNextWithErrorListener<PushMessage> {
         override fun onNext(response: PushMessage?) {
-            binding.pushMultiple.showContent()
+            binding.multipleStatusView.showContent()
             if (response?.itemList == null) {
-                binding.pushMultiple.showEmpty()
+                binding.multipleStatusView.showEmpty()
                 return
             }
 
@@ -103,4 +103,7 @@ class PushFragment : BaseFragment<FragmentPushBinding>() {
             Log.d("TAG", ExceptionHandle.handleException(e!!))
         }
     }
+
+    override fun initLayout(): Int = R.layout.layout_common_multiple_refresh_recycler
+
 }

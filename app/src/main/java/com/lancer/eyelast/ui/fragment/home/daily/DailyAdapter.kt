@@ -20,8 +20,8 @@ import com.lancer.eyelast.extension.RecyclerViewHelp
  * @des
  * @Date 2020/7/3 15:09
  */
-class DailyAdapter(fragment: DailyFragment) : BaseProviderMultiAdapter<Daily.Item>(),
-    LoadMoreModule {
+class DailyAdapter(fragment: DailyFragment) :
+    BaseProviderMultiAdapter<Daily.Item>(){
     init {
         addItemProvider(Banner3ViewHolder(fragment))
         addItemProvider(FollowCardViewHolder(fragment))
@@ -36,6 +36,7 @@ class DailyAdapter(fragment: DailyFragment) : BaseProviderMultiAdapter<Daily.Ite
     override fun getItemType(data: List<Daily.Item>, position: Int): Int {
         return RecyclerViewHelp.getItemViewType(data[position])
     }
+
     companion object {
         const val TAG = "DailyAdapter"
         const val DEFAULT_LIBRARY_TYPE = "DEFAULT"
