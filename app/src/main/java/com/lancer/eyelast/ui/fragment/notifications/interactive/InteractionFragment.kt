@@ -28,6 +28,11 @@ class InteractionFragment : BaseFragment<FragmentInteractionBinding>() {
     override fun initData() {
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.interactionMultiple.showEmpty()
+    }
+
     override fun initLayout(): Int = R.layout.fragment_interaction
 
 }

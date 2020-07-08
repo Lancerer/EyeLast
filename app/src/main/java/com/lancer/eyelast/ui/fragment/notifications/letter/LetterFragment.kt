@@ -24,6 +24,11 @@ class LetterFragment : BaseFragment<FragmentLetterBinding>() {
     override fun initView() {
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.letterMultiple.showEmpty()
+    }
+
     override fun initData() {
     }
 

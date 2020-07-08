@@ -7,29 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lancer.eyelast.R
+import com.lancer.eyelast.base.BaseFragment
+import com.lancer.eyelast.databinding.FragmentDiscoveryBinding
 
 /**
  * 发现
  */
-class DiscoveryFragment : Fragment() {
+class DiscoveryFragment : BaseFragment<FragmentDiscoveryBinding>() {
 
-    companion object {
-        fun newInstance() = DiscoveryFragment()
+
+    override fun initView() {
     }
 
-    private lateinit var viewModel: DiscoveryViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_discovery, container, false)
+    override fun initData() {
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DiscoveryViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.discoveryMultiple.showEmpty()
     }
+    override fun initLayout(): Int =R.layout.fragment_discovery
 
 }

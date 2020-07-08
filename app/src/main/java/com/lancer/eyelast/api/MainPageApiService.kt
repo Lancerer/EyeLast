@@ -18,25 +18,35 @@ interface MainPageApiService {
 
 
     /**
-     * 通知-推送列表
+     * 通知模块-推送列表
      */
     @GET
     fun getPushMessage(@Url url: String): Observable<PushMessage>
 
     /**
-     * 首页-日报列表
+     * 首页模块-日报列表
      */
     @GET
     fun getDaily(@Url url: String): Observable<Daily>
 
 
     /**
-     * 首页-推荐列表
+     * 首页模块-推荐列表
      */
     @GET
     fun getHRecommend(@Url url: String): Observable<HomePageRecommend>
 
+    /**
+     * 社区模块-关注列表
+     */
+    @GET
+    fun getFollowList(@Url url: String): Observable<Follow>
 
+    /**
+     * 社区模块-推荐列表
+     */
+    @GET
+    fun getCommunityRecommend(@Url url: String): Observable<CommunityRecommend>
     /**
      * Video
      * *************************************************

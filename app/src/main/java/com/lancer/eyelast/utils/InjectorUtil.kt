@@ -5,6 +5,8 @@ import com.lancer.eyelast.model.VideoRepository
 import com.lancer.eyelast.model.dao.EyeLastDatabase
 import com.lancer.eyelast.network.EyeLastNetWork
 import com.lancer.eyelast.ui.activity.video.VideoViewModelFactory
+import com.lancer.eyelast.ui.fragment.community.follow.FollowViewModelFactory
+import com.lancer.eyelast.ui.fragment.community.recommend.RecommendViewModelFactory
 import com.lancer.eyelast.ui.fragment.home.commend.CommendViewModelFactory
 import com.lancer.eyelast.ui.fragment.home.daily.DailyViewModelFactory
 import com.lancer.eyelast.ui.fragment.notifications.push.PushViewModelFactory
@@ -19,7 +21,9 @@ object InjectorUtil {
         EyeLastDatabase.getMainPageDao(),
         EyeLastNetWork.getInstance()
     )
-    private fun getVideoRepository() = VideoRepository.getInstance(EyeLastDatabase.getVideoDao(), EyeLastNetWork.getInstance())
+
+    private fun getVideoRepository() =
+        VideoRepository.getInstance(EyeLastDatabase.getVideoDao(), EyeLastNetWork.getInstance())
 
     /**
      * push
@@ -33,7 +37,7 @@ object InjectorUtil {
 
 
     /**
-     * commend
+     * Home-commend
      */
     fun getHomePageCommendViewModelFactory() = CommendViewModelFactory(getMainPageRepository())
 
@@ -41,5 +45,15 @@ object InjectorUtil {
      * video
      */
     fun getVideoViewModelFactory() = VideoViewModelFactory(getVideoRepository())
+
+    /**
+     * follow
+     */
+    fun getFollowListViewModelFactory() = FollowViewModelFactory(getMainPageRepository())
+
+    /**
+     * community-commend
+     */
+    fun getCommunityRecommendViewModelFactory() = RecommendViewModelFactory(getMainPageRepository())
 
 }

@@ -36,7 +36,17 @@ class EyeLastNetWork {
     /**
      * 视频详情-评论列表
      */
-    fun fetchVideoCommentList(url: String)=mainPageService.getVideoCommentList(url)
+    fun fetchVideoCommentList(url: String) = mainPageService.getVideoCommentList(url)
+
+    /**
+     * 社区模块-关注列表follow
+     */
+    fun fetchFollowList(url: String) = mainPageService.getFollowList(url)
+
+    /**
+     * 社区模块-推荐列表
+     */
+    fun fetchCommunityRecommend(url: String) = mainPageService.getCommunityRecommend(url)
 
     companion object {
 
