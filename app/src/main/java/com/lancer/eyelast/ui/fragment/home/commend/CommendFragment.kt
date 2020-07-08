@@ -46,6 +46,7 @@ class CommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        multipleStatusView=binding.multipleStatusView
         binding.multipleStatusView.showLoading()
     }
 
@@ -77,7 +78,7 @@ class CommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>
 
     inner class MyListener : OnNextWithErrorListener<HomePageRecommend> {
         override fun onNext(response: HomePageRecommend?) {
-            binding.multipleStatusView.showContent()
+            multipleStatusView?.showContent()
             if (response?.itemList == null) {
                 binding.multipleStatusView.showEmpty()
                 return

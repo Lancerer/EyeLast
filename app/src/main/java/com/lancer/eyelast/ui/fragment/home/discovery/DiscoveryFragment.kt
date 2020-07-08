@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.Discovery
-import com.lancer.eyelast.databinding.FragmentDiscoveryBinding
 import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 import com.lancer.eyelast.utils.InjectorUtil
@@ -59,14 +58,15 @@ class DiscoveryFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.multipleStatusView.showEmpty()
+        multipleStatusView = binding.multipleStatusView
+        multipleStatusView?.showEmpty()
     }
 
     override fun onNext(response: Discovery?) {
         nextPageUrl = response?.nextPageUrl
-        binding.multipleStatusView.showContent()
+        multipleStatusView?.showContent()
         if (response?.itemList == null) {
-            binding.multipleStatusView.showEmpty()
+            multipleStatusView?.showEmpty()
             return
         }
         when (binding.refreshLayout.state) {
@@ -88,7 +88,7 @@ class DiscoveryFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
     }
 
     override fun onError(e: Throwable?) {
-        binding.multipleStatusView.showError()
+        multipleStatusView?.showError()
     }
 
 

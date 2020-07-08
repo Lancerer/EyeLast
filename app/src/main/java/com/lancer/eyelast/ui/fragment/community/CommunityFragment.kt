@@ -1,26 +1,16 @@
 package com.lancer.eyelast.ui.fragment.community
 
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.base.BaseFragmentAdapter
-import com.lancer.eyelast.databinding.FragmentCommendBinding
 import com.lancer.eyelast.databinding.FragmentCommunityBinding
 import com.lancer.eyelast.ui.fragment.community.follow.FollowFragment
 import com.lancer.eyelast.ui.fragment.community.recommend.RecommendFragment
-import com.lancer.eyelast.ui.fragment.home.HomeFragment
-import com.lancer.eyelast.ui.fragment.home.commend.CommendFragment
-import com.lancer.eyelast.ui.fragment.home.daily.DailyFragment
-import com.lancer.eyelast.ui.fragment.home.discovery.DiscoveryFragment
+
 
 class CommunityFragment : BaseFragment<FragmentCommunityBinding>() {
     init {

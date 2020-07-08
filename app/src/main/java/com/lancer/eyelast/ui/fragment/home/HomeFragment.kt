@@ -42,7 +42,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initView() {
         Log.d("TAG", "mTabList.size=${mTabList.size}")
         binding.homeVp.adapter =
-            BaseFragmentAdapter(childFragmentManager, mFragmentList, mTabList,
+            BaseFragmentAdapter(
+                childFragmentManager, mFragmentList, mTabList,
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
             )
         binding.homeTabLayout.setupWithViewPager(binding.homeVp)
@@ -53,9 +54,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mTabList.clear()
-        mFragmentList.clear()
-        Log.d("TAG", "mTabList.size=${mTabList.size}")
     }
 
     override fun initLayout(): Int = R.layout.fragment_home

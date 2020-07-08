@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.PushMessage
-import com.lancer.eyelast.databinding.FragmentPushBinding
 import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
-import com.lancer.eyelast.ui.fragment.notifications.letter.LetterFragment
 import com.lancer.eyelast.utils.InjectorUtil
 
 class PushFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() {
@@ -32,9 +30,11 @@ class PushFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.multipleStatusView.showLoading()
+        multipleStatusView = binding.multipleStatusView
+        multipleStatusView?.showLoading()
 
     }
+
     private var nextPageUrl: String? = null
     private val viewModel by lazy {
         ViewModelProvider(
@@ -82,8 +82,7 @@ class PushFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() 
     }
 
 
-
-   private inner class MyListener : OnNextWithErrorListener<PushMessage> {
+    private inner class MyListener : OnNextWithErrorListener<PushMessage> {
         override fun onNext(response: PushMessage?) {
             binding.multipleStatusView.showContent()
             if (response?.itemList == null) {

@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.Follow
-import com.lancer.eyelast.databinding.FragmentFollowBinding
 import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.network.exception.ExceptionHandle
 import com.lancer.eyelast.network.scheduler.OnNextWithErrorListener
 import com.lancer.eyelast.utils.InjectorUtil
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
-class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(), OnNextWithErrorListener<Follow> {
+class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(),
+    OnNextWithErrorListener<Follow> {
 
 
     private lateinit var mAdapter: FollowAdapter
@@ -32,7 +32,8 @@ class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(
     private var nextPageUrl: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.multipleStatusView.showLoading()
+        multipleStatusView = binding.multipleStatusView
+        multipleStatusView?.showLoading()
     }
 
     override fun initView() {
@@ -52,13 +53,13 @@ class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(
     }
 
     override fun onNext(follow: Follow?) {
-        binding.multipleStatusView.showContent()
+        multipleStatusView?.showContent()
 
         follow?.let {
             nextPageUrl = it.nextPageUrl
 
             if (it.itemList.isEmpty()) {
-                binding.multipleStatusView.showEmpty()
+                multipleStatusView?.showEmpty()
                 return
             }
         }
@@ -85,11 +86,14 @@ class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(
     }
 
     override fun onError(e: Throwable?) {
-        binding.multipleStatusView.showError()
+        multipleStatusView?.showError()
         Log.d(javaClass.simpleName, ExceptionHandle.handleException(e!!))
     }
 
     override fun initLayout(): Int = R.layout.layout_common_multiple_refresh_recycler
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
 }

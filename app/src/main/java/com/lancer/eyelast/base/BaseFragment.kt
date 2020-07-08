@@ -10,12 +10,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.classic.common.MultipleStatusView
 
 abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     protected lateinit var binding: V
     var name = "base"
 
-    private lateinit var mActivity: Activity
+    lateinit var mActivity: Activity
+
+    var multipleStatusView: MultipleStatusView? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -78,8 +81,9 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        //TODO 记得做解绑操作，不然视图可能还存在会内存泄露
         Log.d(name, "onDestroyView")
-
+        binding.unbind()
     }
 
     override fun onDestroy() {

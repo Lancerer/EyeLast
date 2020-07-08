@@ -7,6 +7,7 @@ import com.lancer.eyelast.utils.DisplayManager
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import leakcanary.LeakCanary
 import kotlin.properties.Delegates
 
 /**
@@ -44,6 +45,7 @@ class BaseApplication : Application() {
         context = applicationContext
         DisplayManager.init(this)
     }
+
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

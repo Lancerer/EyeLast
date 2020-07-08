@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.bean.CommunityRecommend
-import com.lancer.eyelast.databinding.FragmentRecommendBinding
 import com.lancer.eyelast.databinding.LayoutCommonMultipleRefreshRecyclerBinding
 import com.lancer.eyelast.extension.dp2px
 import com.lancer.eyelast.network.exception.ExceptionHandle
@@ -65,7 +64,8 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.multipleStatusView.showLoading()
+        multipleStatusView = binding.multipleStatusView
+        multipleStatusView?.showLoading()
     }
 
     override fun initView() {
@@ -73,7 +73,7 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
         binding.recyclerView.adapter = mAdapter
         val mainLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mainLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        binding.recyclerView.layoutManager =mainLayoutManager
+        binding.recyclerView.layoutManager = mainLayoutManager
 
         binding.refreshLayout.setOnLoadMoreListener {
             viewModel.requestRecommend(this, nextPageUrl!!)
@@ -89,12 +89,12 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
 
 
     override fun onNext(response: CommunityRecommend?) {
-        binding.multipleStatusView.showContent()
+        multipleStatusView?.showContent()
         response?.let {
             nextPageUrl = it.nextPageUrl
 
             if (it.itemList.isEmpty()) {
-                binding.multipleStatusView.showEmpty()
+                multipleStatusView?.showEmpty()
                 return
             }
         }
@@ -119,7 +119,7 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
     }
 
     override fun onError(e: Throwable?) {
-        binding.multipleStatusView.showError()
+        multipleStatusView?.showError()
         Log.d(javaClass.simpleName, ExceptionHandle.handleException(e!!))
     }
 

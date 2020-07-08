@@ -43,8 +43,10 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(name, "onDestroy")
+        binding.unbind()
 
     }
+
     abstract fun initView()
     abstract fun initData()
     abstract fun initLayout(): Int
