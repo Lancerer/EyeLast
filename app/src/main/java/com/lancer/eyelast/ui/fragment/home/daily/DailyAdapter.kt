@@ -1,19 +1,16 @@
 package com.lancer.eyelast.ui.fragment.home.daily
 
 import com.chad.library.adapter.base.BaseProviderMultiAdapter
-import com.chad.library.adapter.base.module.LoadMoreModule
-import com.lancer.eyelast.Const
-import com.lancer.eyelast.Const.ItemViewType.Companion.BANNER3
-import com.lancer.eyelast.Const.ItemViewType.Companion.FOLLOW_CARD
-import com.lancer.eyelast.Const.ItemViewType.Companion.INFORMATION_CARD
-import com.lancer.eyelast.Const.ItemViewType.Companion.TEXT_CARD_FOOTER2
-import com.lancer.eyelast.Const.ItemViewType.Companion.TEXT_CARD_FOOTER3
-import com.lancer.eyelast.Const.ItemViewType.Companion.TEXT_CARD_HEADER5
-import com.lancer.eyelast.Const.ItemViewType.Companion.TEXT_CARD_HEADER8
-import com.lancer.eyelast.Const.ItemViewType.Companion.UNKNOWN
 import com.lancer.eyelast.bean.Daily
-import com.lancer.eyelast.ui.provider.*
+import com.lancer.eyelast.ui.fragment.home.daily.provider.TextCardViewHeader5ViewHolder
 import com.lancer.eyelast.extension.RecyclerViewHelp
+import com.lancer.eyelast.ui.fragment.home.daily.provider.Banner3ViewHolder
+import com.lancer.eyelast.ui.fragment.home.daily.provider.FollowCardViewHolder
+import com.lancer.eyelast.ui.fragment.home.daily.provider.InformationCardFollowCardViewHolder
+import com.lancer.eyelast.ui.fragment.home.daily.provider.TextCardViewFooter2ViewHolder
+import com.lancer.eyelast.ui.fragment.home.daily.provider.TextCardViewFooter3ViewHolder
+import com.lancer.eyelast.ui.fragment.home.daily.provider.TextCardViewHeader7ViewHolder
+import com.lancer.eyelast.ui.fragment.home.daily.provider.TextCardViewHeader8ViewHolder
 
 /**
  * @author lancer

@@ -19,6 +19,9 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
  */
 class DailyFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() {
 
+    init {
+        name = DailyFragment::class.java.simpleName
+    }
 
     private val viewModel by lazy {
         ViewModelProvider(

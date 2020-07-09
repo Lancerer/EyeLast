@@ -1,4 +1,4 @@
-package com.lancer.eyelast.ui.provider;
+package com.lancer.eyelast.ui.fragment.home.daily.provider;
 
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -10,6 +10,7 @@ import com.lancer.eyelast.R;
 import com.lancer.eyelast.bean.Daily;
 import com.lancer.eyelast.extension.ImageViewKt;
 import com.lancer.eyelast.ui.fragment.home.daily.DailyFragment;
+import com.lancer.eyelast.utils.ActionUrl;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -47,9 +48,9 @@ public class Banner3ViewHolder extends BaseItemProvider<Daily.Item> {
         holder.setText(R.id.tvDescription, item.getData().getHeader().getDescription());
         if (item.getData().getLabel() != null) {
             if (TextUtils.isEmpty(item.getData().getLabel().getText())) {
-                holder.setVisible(R.id.tvLabel, false);
-            } else {
                 holder.setVisible(R.id.tvLabel, true);
+            } else {
+                holder.setGone(R.id.tvLabel, true);
             }
             holder.setText(R.id.tvLabel, item.getData().getLabel().getText());
         } else {
@@ -57,6 +58,9 @@ public class Banner3ViewHolder extends BaseItemProvider<Daily.Item> {
         }
 
         //TODO
+        holder.itemView.setOnClickListener(v -> ActionUrl.INSTANCE.process(dailyFragment,
+                item.getData().getActionUrl(),
+                item.getData().getHeader().getTitle()));
 
     }
 }

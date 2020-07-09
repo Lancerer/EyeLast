@@ -142,3 +142,10 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 #### viewModel的使用
 #### multiple-status_view使用
 - 外层就是一个RelativeLayout，将他作为最外层的布局然后包裹内容即可，然后就是设置各种状态的布局了
+
+#### TODO 
+- 加载问题，现在切换界面后原来的界面整个界面全部更新了，需要查看原因
+- 头像选择
+- 图片选择，多图选择
+- videoActivity
+- 状态栏

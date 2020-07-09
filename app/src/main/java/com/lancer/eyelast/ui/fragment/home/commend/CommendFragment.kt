@@ -24,8 +24,8 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
  */
 class CommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>() {
 
-    companion object {
-        fun newInstance() = CommendFragment()
+    init {
+        name = CommendFragment::class.java.simpleName
     }
 
     private val viewModel by lazy {
@@ -46,7 +46,7 @@ class CommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        multipleStatusView=binding.multipleStatusView
+        multipleStatusView = binding.multipleStatusView
         binding.multipleStatusView.showLoading()
     }
 
@@ -73,7 +73,6 @@ class CommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>
     override fun initData() {
         viewModel.requestRecommend(listener)
     }
-
 
 
     inner class MyListener : OnNextWithErrorListener<HomePageRecommend> {

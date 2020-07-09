@@ -20,6 +20,12 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     var multipleStatusView: MultipleStatusView? = null
 
+    /**
+     * 是否已经加载过数据
+     */
+    private var mHasLoadedData = false
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as Activity
@@ -51,6 +57,8 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(name, "onViewCreated")
+        initView()
+        initData()
     }
 
 
@@ -63,8 +71,6 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.d(name, "onResume")
-        initView()
-        initData()
     }
 
     override fun onPause() {
@@ -81,8 +87,8 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        //TODO 记得做解绑操作，不然视图可能还存在会内存泄露
         Log.d(name, "onDestroyView")
+        multipleStatusView=null
         binding.unbind()
     }
 

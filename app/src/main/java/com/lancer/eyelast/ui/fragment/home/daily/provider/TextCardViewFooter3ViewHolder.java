@@ -1,4 +1,4 @@
-package com.lancer.eyelast.ui.provider;
+package com.lancer.eyelast.ui.fragment.home.daily.provider;
 
 import com.chad.library.adapter.base.provider.BaseItemProvider;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -14,26 +14,28 @@ import org.jetbrains.annotations.NotNull;
  * @des
  * @Date 2020/7/6 8:52
  */
-public class TextCardViewHeader5ViewHolder extends BaseItemProvider<Daily.Item> {
+public class TextCardViewFooter3ViewHolder extends BaseItemProvider<Daily.Item> {
     private DailyFragment dailyFragment;
-    public TextCardViewHeader5ViewHolder(DailyFragment dailyFragment) {
+
+
+    public TextCardViewFooter3ViewHolder(DailyFragment dailyFragment) {
         this.dailyFragment = dailyFragment;
+
     }
 
     @Override
     public int getItemViewType() {
-        return Const.ItemViewType.TEXT_CARD_HEADER5;
+        return Const.ItemViewType.TEXT_CARD_FOOTER3;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.item_text_card_type_header_five;
+        return R.layout.item_text_card_type_footer_three;
     }
 
     @Override
     public void convert(@NotNull BaseViewHolder holder, Daily.Item item) {
-        holder.setText(R.id.tvTitle5, item.getData().getText());
+        holder.setText(R.id.tvFooterRightText3, item.getData().getText());
         //TODO
-
     }
 }

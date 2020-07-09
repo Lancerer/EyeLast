@@ -1,7 +1,8 @@
-package com.lancer.eyelast.ui.provider;
+package com.lancer.eyelast.ui.fragment.home.daily.provider;
 
 import android.widget.ImageView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.provider.BaseItemProvider;
@@ -10,7 +11,9 @@ import com.lancer.eyelast.Const;
 import com.lancer.eyelast.R;
 import com.lancer.eyelast.bean.Daily;
 import com.lancer.eyelast.extension.ImageViewKt;
+import com.lancer.eyelast.ui.fragment.home.commend.CommendAdapter;
 import com.lancer.eyelast.ui.fragment.home.daily.DailyFragment;
+import com.lancer.eyelast.utils.ActionUrl;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -49,14 +52,13 @@ public class InformationCardFollowCardViewHolder extends BaseItemProvider<Daily.
                 RoundedCornersTransformation.CornerType.TOP
         );
 
-//        recyclerView.setHasFixedSize(true);
-//        if (recyclerView.getItemDecorationCount() == 0) {
-//            //TODO
-//        }
-//        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//
-//        holder.itemView.setOnClickListener(v -> {
-//          //TODO
-//        });
+        recyclerView.setHasFixedSize(true);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new CommendAdapter.InformationCardFollowCardAdapter(dailyFragment.getActivity()
+                , item.getData().getActionUrl(), item.getData().getTitleList()));
+        holder.itemView.setOnClickListener(v -> ActionUrl.INSTANCE.process(
+                dailyFragment, item.getData().getActionUrl(), ""
+        ));
     }
 }

@@ -1,6 +1,5 @@
-package com.lancer.eyelast.ui.provider;
+package com.lancer.eyelast.ui.fragment.home.daily.provider;
 
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -9,6 +8,8 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.lancer.eyelast.Const;
 import com.lancer.eyelast.R;
 import com.lancer.eyelast.bean.Daily;
+import com.lancer.eyelast.bean.FollowCard;
+import com.lancer.eyelast.ui.activity.video.VideoActivity;
 import com.lancer.eyelast.ui.fragment.home.daily.DailyFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -46,17 +47,30 @@ public class FollowCardViewHolder extends BaseItemProvider<Daily.Item> {
         if (item.getData().getContent().getData().getAd()) {
             holder.setVisible(R.id.tvLabel, true);
         } else {
-            holder.setVisible(R.id.tvLabel, false);
+            holder.setGone(R.id.tvLabel, true);
         }
         if (item.getData().getContent().getData().getLibrary().equals("DAILY")) {
             holder.setVisible(R.id.ivChoiceness, true);
         } else {
             holder.setVisible(R.id.ivChoiceness, false);
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO 跳转到video界面
+        holder.itemView.setOnClickListener(v -> {
+            FollowCard followCard = item.getData().getContent().getData();
+            if (followCard.getAd() || followCard.getAuthor() == null) {
+                VideoActivity.Companion.start(dailyFragment.getActivity(), followCard.getId());
+            } else {
+                VideoActivity.Companion.start(dailyFragment.getActivity(), new VideoActivity.VideoInfo(
+                        followCard.getId(),
+                        followCard.getPlayUrl(),
+                        followCard.getTitle(),
+                        followCard.getDescription(),
+                        followCard.getCategory(),
+                        followCard.getLibrary(),
+                        followCard.getConsumption(),
+                        followCard.getCover(),
+                        followCard.getAuthor(),
+                        followCard.getWebUrl()
+                ));
             }
         });
 

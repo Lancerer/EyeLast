@@ -24,7 +24,7 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(),
     OnNextWithErrorListener<CommunityRecommend> {
     init {
-        name = javaClass.simpleName
+        name = RecommendFragment::class.java.simpleName
     }
 
     /**

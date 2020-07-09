@@ -41,11 +41,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         Log.d("TAG", "mTabList.size=${mTabList.size}")
+        //懒加载
         binding.homeVp.adapter =
             BaseFragmentAdapter(
                 childFragmentManager, mFragmentList, mTabList,
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
             )
+//        binding.homeVp.adapter =
+//            BaseFragmentAdapter(
+//                childFragmentManager, mFragmentList, mTabList
+//            )
         binding.homeTabLayout.setupWithViewPager(binding.homeVp)
     }
 

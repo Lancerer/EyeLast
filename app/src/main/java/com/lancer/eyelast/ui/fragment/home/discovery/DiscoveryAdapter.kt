@@ -53,7 +53,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
     }
 
 
-    inner class TextCardViewHeader5ViewHolder(val fragment: DiscoveryFragment) :
+    private   inner class TextCardViewHeader5ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_HEADER5
@@ -76,7 +76,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class TextCardViewHeader7ViewHolder(val fragment: DiscoveryFragment) :
+   private inner class TextCardViewHeader7ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_HEADER7
@@ -91,7 +91,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 
     }
 
-    inner class TextCardViewHeader8ViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class TextCardViewHeader8ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_HEADER8
@@ -105,7 +105,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class TextCardViewFooter2ViewHolder(val fragment: DiscoveryFragment) :
+    private inner class TextCardViewFooter2ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_FOOTER2
@@ -118,7 +118,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class TextCardViewFooter3ViewHolder(val fragment: DiscoveryFragment) :
+    private inner class TextCardViewFooter3ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_FOOTER3
@@ -131,7 +131,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class FollowCardViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class FollowCardViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.FOLLOW_CARD
@@ -163,7 +163,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
     }
 
 
-    inner class HorizontalScrollCardViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class HorizontalScrollCardViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.HORIZONTAL_SCROLL_CARD
@@ -195,7 +195,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class SpecialSquareCardCollectionViewHolder(val fragment: DiscoveryFragment) :
+    private   inner class SpecialSquareCardCollectionViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.SPECIAL_SQUARE_CARD_COLLECTION
@@ -216,7 +216,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class ColumnCardListViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class ColumnCardListViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.COLUMN_CARD_LIST
@@ -236,7 +236,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class BannerViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class BannerViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.BANNER
@@ -252,7 +252,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class Banner3ViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class Banner3ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.BANNER3
@@ -280,7 +280,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class VideoSmallCardViewHolder(fragment: DiscoveryFragment) :
+    private  inner class VideoSmallCardViewHolder(fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.VIDEO_SMALL_CARD
@@ -305,7 +305,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class TagBriefCardViewHolder(fragment: DiscoveryFragment) :
+    private inner class TagBriefCardViewHolder(fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TAG_BRIEFCARD
@@ -321,7 +321,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class TopicBriefCardViewHolder(fragment: DiscoveryFragment) :
+    private inner class TopicBriefCardViewHolder(fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TOPIC_BRIEFCARD
@@ -337,7 +337,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    inner class AutoPlayVideoAdViewHolder(val fragment: DiscoveryFragment) :
+    private  inner class AutoPlayVideoAdViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.AUTO_PLAY_VIDEO_AD

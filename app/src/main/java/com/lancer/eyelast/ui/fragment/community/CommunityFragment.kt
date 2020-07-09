@@ -29,9 +29,13 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>() {
 
     override fun initView() {
         Log.d("TAG", "mTabList.size=${mTabList.size}")
+//        binding.communityVp.adapter =
+//            BaseFragmentAdapter(childFragmentManager, mFragmentList, mTabList,
+//                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+//            )
         binding.communityVp.adapter =
-            BaseFragmentAdapter(childFragmentManager, mFragmentList, mTabList,
-                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+            BaseFragmentAdapter(
+                childFragmentManager, mFragmentList, mTabList
             )
         binding.communityTabLayout.setupWithViewPager(binding.communityVp)
     }

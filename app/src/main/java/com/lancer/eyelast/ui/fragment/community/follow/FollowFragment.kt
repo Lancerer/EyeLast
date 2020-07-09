@@ -17,6 +17,9 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 class FollowFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(),
     OnNextWithErrorListener<Follow> {
 
+    init {
+        name = FollowFragment::class.java.simpleName
+    }
 
     private lateinit var mAdapter: FollowAdapter
 

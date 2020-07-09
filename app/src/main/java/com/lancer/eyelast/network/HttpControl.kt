@@ -66,7 +66,7 @@ class HttpControl {
             // 设置 Log
             val logging = HttpLoggingInterceptor()
             // 设置 Log 级别
-            logging.level = HttpLoggingInterceptor.Level.BODY
+            logging.level = HttpLoggingInterceptor.Level.HEADERS
             okHttpBuilder.addInterceptor(logging)
             //公共请求头
             okHttpBuilder.addInterceptor(HeaderInterceptor())
