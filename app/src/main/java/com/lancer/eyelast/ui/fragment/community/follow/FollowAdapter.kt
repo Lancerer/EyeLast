@@ -48,7 +48,10 @@ class FollowAdapter(val fragment: FollowFragment, var dataList: List<Follow.Item
                 item.data.content.data.run {
                     holder.ivAvatar.load(item.data.header.icon ?: author?.icon ?: "")
 
-                    holder.tvReleaseTime.text = DateUtil.getDate(releaseTime ?: author?.latestReleaseTime ?: System.currentTimeMillis(), "HH:mm")
+                    holder.tvReleaseTime.text = DateUtil.getDate(
+                        releaseTime ?: author?.latestReleaseTime ?: System.currentTimeMillis(),
+                        "HH:mm"
+                    )
                     holder.tvTitle.text = title
                     holder.tvNickname.text = author?.name ?: ""
                     holder.tvContent.text = description
@@ -69,20 +72,20 @@ class FollowAdapter(val fragment: FollowFragment, var dataList: List<Follow.Item
 
 
     inner class AutoPlayFollowCardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ivAvatar: ImageView = view.findViewById<ImageView>(R.id.ivAvatar)
-        val tvReleaseTime = view.findViewById<TextView>(R.id.tvReleaseTime)
-        val tvTitle = view.findViewById<TextView>(R.id.tvTitle)
-        val tvNickname = view.findViewById<TextView>(R.id.tvNickname)
-        val tvContent = view.findViewById<TextView>(R.id.tvContent)
-        val ivCollectionCount = view.findViewById<ImageView>(R.id.ivCollectionCount)
-        val tvCollectionCount = view.findViewById<TextView>(R.id.tvCollectionCount)
-        val ivReply = view.findViewById<ImageView>(R.id.ivReply)
-        val tvReplyCount = view.findViewById<TextView>(R.id.tvReplyCount)
-        val ivFavorites = view.findViewById<ImageView>(R.id.ivFavorites)
-        val tvFavorites = view.findViewById<TextView>(R.id.tvFavorites)
-        val tvVideoDuration = view.findViewById<TextView>(R.id.tvVideoDuration)
-        val ivShare = view.findViewById<ImageView>(R.id.ivShare)
-        val videoPlayer: GSYVideoPlayer = view.findViewById<GSYVideoPlayer>(R.id.videoPlayer)
+        val ivAvatar: ImageView = view.findViewById(R.id.ivAvatar)
+        val tvReleaseTime: TextView = view.findViewById(R.id.tvReleaseTime)
+        val tvTitle: TextView = view.findViewById(R.id.tvTitle)
+        val tvNickname: TextView = view.findViewById(R.id.tvNickname)
+        val tvContent: TextView = view.findViewById(R.id.tvContent)
+        val ivCollectionCount: ImageView = view.findViewById<ImageView>(R.id.ivCollectionCount)
+        val tvCollectionCount: TextView = view.findViewById(R.id.tvCollectionCount)
+        val ivReply: ImageView = view.findViewById(R.id.ivReply)
+        val tvReplyCount: TextView = view.findViewById(R.id.tvReplyCount)
+        val ivFavorites: ImageView = view.findViewById(R.id.ivFavorites)
+        val tvFavorites: TextView = view.findViewById(R.id.tvFavorites)
+        val tvVideoDuration: TextView = view.findViewById(R.id.tvVideoDuration)
+        val ivShare: ImageView = view.findViewById(R.id.ivShare)
+        val videoPlayer: GSYVideoPlayer = view.findViewById(R.id.videoPlayer)
     }
 
     companion object {

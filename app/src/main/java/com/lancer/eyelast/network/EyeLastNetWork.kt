@@ -37,6 +37,10 @@ class EyeLastNetWork {
      * 视频详情-评论列表
      */
     fun fetchVideoCommentList(url: String) = mainPageService.getVideoCommentList(url)
+    /**
+     * TODO
+     */
+    fun fetchVideoDetail(id:Long)=mainPageService.getVideoBeanForClient(id)
 
     /**
      * 社区模块-关注列表follow

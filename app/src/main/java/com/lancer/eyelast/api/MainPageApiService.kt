@@ -105,5 +105,10 @@ interface MainPageApiService {
          * 通知-推送列表
          */
         const val PUSHMESSAGE_URL = "${HttpControl.BASE_URL}api/v3/messages"
+
+        /**
+         * 视频详情-评论列表URL
+         */
+        const val VIDEO_REPLIES_URL = "${HttpControl.BASE_URL}api/v2/replies/video?videoId="
     }
 }

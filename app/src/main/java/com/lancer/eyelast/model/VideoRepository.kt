@@ -1,5 +1,6 @@
 package com.lancer.eyelast.model
 
+import com.lancer.eyelast.bean.VideoBeanForClient
 import com.lancer.eyelast.bean.VideoRelated
 import com.lancer.eyelast.bean.VideoReplies
 import com.lancer.eyelast.model.dao.VideoDao
@@ -21,6 +22,12 @@ class VideoRepository(private val dao: VideoDao, private val network: EyeLastNet
         return network.fetchVideoRecommendList(id).compose(SchedulerUtils.ioToMain())
     }
 
+    /**
+     * TODO
+     */
+    fun requestVideoDetail(id: Long): Observable<VideoBeanForClient> {
+        return network.fetchVideoDetail(id)
+    }
 
     /**
      * 视频详情-评论列表
