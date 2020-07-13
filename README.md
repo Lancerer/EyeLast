@@ -149,3 +149,5 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 - 图片选择，多图选择
 - videoActivity
 - 状态栏
+- webView
+- GSYVideoPlayer

@@ -2,12 +2,11 @@ package com.lancer.eyelast.utils
 
 import android.app.Activity
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.FragmentActivity
 import com.lancer.eyelast.Const
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.extension.showToast
-import com.lancer.eyelast.ui.activity.WebViewActivity
+import com.lancer.eyelast.ui.activity.web.WebViewActivity
 import java.net.URLDecoder
 
 /**

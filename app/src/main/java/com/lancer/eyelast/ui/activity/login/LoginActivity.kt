@@ -1,4 +1,4 @@
-package com.lancer.eyelast.ui.activity
+package com.lancer.eyelast.ui.activity.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

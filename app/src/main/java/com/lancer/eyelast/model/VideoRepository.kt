@@ -13,7 +13,7 @@ import io.reactivex.Observable
  * @des
  * @Date 2020/7/7 9:30
  */
-class VideoRepository(private val dao: VideoDao, private val network: EyeLastNetWork) {
+class VideoRepository(private val videoDao: VideoDao, private val network: EyeLastNetWork) {
 
     /**
      * 视频详情-推荐列表

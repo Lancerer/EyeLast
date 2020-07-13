@@ -13,6 +13,9 @@ import com.lancer.eyelast.ui.fragment.notifications.interactive.InteractionFragm
 import com.lancer.eyelast.ui.fragment.notifications.letter.LetterFragment
 import com.lancer.eyelast.ui.fragment.notifications.push.PushFragment
 
+/**
+ * 通知模块
+ */
 class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
     init {
         name = NotificationsFragment::class.java.simpleName

@@ -24,9 +24,13 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".ui.activity.video.VideoActivity" />
-        <activity android:name=".ui.activity.WebViewActivity" />
-        <activity android:name=".ui.activity.LoginActivity" />
+        <activity
+            android:name=".ui.activity.video.VideoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullTheme" />
+        <activity android:name=".ui.activity.web.WebViewActivity" />
+        <activity android:name=".ui.activity.login.LoginActivity" />
 
         <activity
             android:name=".ui.MainActivity"

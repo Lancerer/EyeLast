@@ -6,7 +6,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
-
+    <style name="FullTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
     <style name="SettingTextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">28dp</item>

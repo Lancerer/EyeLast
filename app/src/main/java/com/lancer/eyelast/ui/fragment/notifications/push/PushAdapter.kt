@@ -19,7 +19,7 @@ class PushAdapter :
 
     override fun convert(holder: BaseViewHolder, item: PushMessage.Message) {
         val imageView = holder.getView(R.id.ivAvatar) as ImageView
-      //  imageView.load(item.icon) {error(R.mipmap.ic_launcher)}
+        imageView.load(item.icon) {error(R.mipmap.ic_launcher)}
         holder.setText(R.id.tvTitle, item.title)
         holder.setText(R.id.tvContent, item.content)
         holder.setText(R.id.tvTime, DateUtil.getConvertedDate(item.date))

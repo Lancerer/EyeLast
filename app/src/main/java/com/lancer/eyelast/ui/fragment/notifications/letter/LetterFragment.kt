@@ -1,14 +1,12 @@
 package com.lancer.eyelast.ui.fragment.notifications.letter
 
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseFragment
 import com.lancer.eyelast.databinding.FragmentLetterBinding
+import com.lancer.eyelast.ui.activity.login.LoginActivity
 
 class LetterFragment : BaseFragment<FragmentLetterBinding>() {
     init {
@@ -26,10 +24,12 @@ class LetterFragment : BaseFragment<FragmentLetterBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.letterMultiple.showEmpty()
     }
 
     override fun initData() {
+        binding.login.setOnClickListener {
+            startActivity(Intent(activity, LoginActivity::class.java))
+        }
     }
 
     override fun initLayout(): Int = R.layout.fragment_letter

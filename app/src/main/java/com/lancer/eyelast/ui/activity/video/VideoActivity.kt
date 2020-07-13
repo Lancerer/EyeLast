@@ -3,12 +3,9 @@ package com.lancer.eyelast.ui.activity.video
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.Parcelable
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseActivity
@@ -46,24 +43,27 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
 
 
     override fun initView() {
-        initParams()
+        getBundles()
         orientationUtils = OrientationUtils(this, binding.videoPlayer)
         startVideoPlayer()
-        mDetailCommentListAdapter = VideoDetailCommentListAdapter(this, viewModel.videoInfoData)
-        mRecommendListAdapter = VideoRecommendListAdapter(this, viewModel.videoInfoData)
-        mergeAdapter = MergeAdapter(mDetailCommentListAdapter, mRecommendListAdapter)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = mergeAdapter
-        binding.recyclerView.setHasFixedSize(true)
+//        mDetailCommentListAdapter = VideoDetailCommentListAdapter(this, viewModel.videoInfoData)
+//        mRecommendListAdapter = VideoRecommendListAdapter(this, viewModel.videoInfoData)
+//        mergeAdapter = MergeAdapter(mDetailCommentListAdapter, mRecommendListAdapter)
+//        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+//        binding.recyclerView.adapter = mergeAdapter
+//        binding.recyclerView.setHasFixedSize(true)
 
     }
 
     override fun initData() {
     }
 
-    private fun initParams() {
-        if (intent.getParcelableExtra<VideoInfo>(EXTRA_VIDEOINFO) != null)
-            viewModel.videoInfoData = intent.getParcelableExtra(EXTRA_VIDEOINFO)
+    /**
+     * 获得intent中传递过来的bundle
+     */
+    private fun getBundles() {
+        if (intent.getParcelableExtra<VideoInfo>(EXTRA_VIDEO_INFO) != null)
+            viewModel.videoInfoData = intent.getParcelableExtra(EXTRA_VIDEO_INFO)
         if (intent.getLongExtra(EXTRA_VIDEO_ID, 0L) != 0L)
             viewModel.videoId = intent.getLongExtra(EXTRA_VIDEO_ID, 0L)
     }
@@ -73,8 +73,8 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
      */
     private fun startVideoPlayer() {
         viewModel.videoInfoData?.run {
-            binding.ivBlurredBg.load(cover.blurred)
-            binding.tvReplyCount.text = consumption.replyCount.toString()
+//            binding.ivBlurredBg.load(cover.blurred)
+//            binding.tvReplyCount.text = consumption.replyCount.toString()
             binding.videoPlayer.startPlay()
         }
     }
@@ -82,8 +82,8 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
     inner class VideoCallPlayBack : GSYSampleCallBack() {
         override fun onStartPrepared(url: String?, vararg objects: Any?) {
             super.onStartPrepared(url, *objects)
-            binding.flHeader.gone()
-            binding.llShares.gone()
+//            binding.flHeader.gone()
+//            binding.llShares.gone()
         }
 
         override fun onClickBlank(url: String?, vararg objects: Any?) {
@@ -98,12 +98,12 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
 
         override fun onAutoComplete(url: String?, vararg objects: Any?) {
             super.onAutoComplete(url, *objects)
-            binding.flHeader.visible()
-            binding.ivPullDown.visible()
-            binding.ivCollection.gone()
-            binding.ivShare.gone()
-            binding.ivMore.gone()
-            binding.llShares.visible()
+//            binding.flHeader.visible()
+//            binding.ivPullDown.visible()
+//            binding.ivCollection.gone()
+//            binding.ivShare.gone()
+//            binding.ivMore.gone()
+//            binding.llShares.visible()
         }
     }
 
@@ -112,13 +112,14 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
         binding.videoPlayer.startWindowFullscreen(this, actionBar = true, statusBar = false)
     }
 
+    /**
+     *
+     */
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         setIntent(intent)
-        initParams()
+        getBundles()
         startVideoPlayer()
-        // viewModel.onRefresh()
-
     }
 
     override fun onPause() {
@@ -227,12 +228,12 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
     companion object {
         const val TAG = "NewDetailActivity"
 
-        const val EXTRA_VIDEOINFO = "videoInfo"
+        const val EXTRA_VIDEO_INFO = "videoInfo"
         const val EXTRA_VIDEO_ID = "videoId"
 
         fun start(context: Activity, videoInfo: VideoInfo) {
             val starter = Intent(context, VideoActivity::class.java)
-            starter.putExtra(EXTRA_VIDEOINFO, videoInfo)
+            starter.putExtra(EXTRA_VIDEO_INFO, videoInfo)
             context.startActivity(starter)
             context.overridePendingTransition(R.anim.anl_push_bottom_in, R.anim.anl_push_up_out)
         }

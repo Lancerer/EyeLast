@@ -11,7 +11,7 @@ import retrofit2.http.Url
 
 /**
  * @author lancer
- * @des
+ * @des api接口，常量url
  * @Date 2020/7/3 8:50
  */
 interface MainPageApiService {

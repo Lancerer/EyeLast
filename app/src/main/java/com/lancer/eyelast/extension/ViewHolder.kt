@@ -29,6 +29,7 @@ import com.lancer.eyelast.Const.ItemViewType.Companion.VIDEO_SMALL_CARD
 
 import com.lancer.eyelast.R
 import com.lancer.eyelast.bean.*
+import com.lancer.eyelast.ui.fragment.home.discovery.DiscoveryAdapter
 
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 import com.zhpan.bannerview.BannerViewPager
@@ -80,7 +81,7 @@ class TextCardViewFooter3ViewHolder(view: View) : RecyclerView.ViewHolder(view) 
 }
 
 class HorizontalScrollCardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-  //TODO   val bannerViewPager: BannerViewPager<Discovery.ItemX, DiscoveryAdapter.HorizontalScrollCardAdapter.ViewHolder> = view.findViewById(R.id.bannerViewPager)
+    val bannerViewPager: BannerViewPager<Discovery.ItemX, DiscoveryAdapter.HorizontalScrollCardAdapter.ViewHolder> = view.findViewById(R.id.bannerViewPager)
 }
 
 class SpecialSquareCardCollectionViewHolder(view: View) : RecyclerView.ViewHolder(view) {

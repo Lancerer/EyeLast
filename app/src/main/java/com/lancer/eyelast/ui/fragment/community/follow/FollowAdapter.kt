@@ -10,7 +10,11 @@ import com.lancer.eyelast.Const
 import com.lancer.eyelast.R
 import com.lancer.eyelast.bean.Follow
 import com.lancer.eyelast.extension.*
+import com.lancer.eyelast.ui.activity.video.VideoActivity
+import com.lancer.eyelast.ui.fragment.home.commend.CommendAdapter
 import com.lancer.eyelast.utils.DateUtil
+import com.shuyu.gsyvideoplayer.GSYVideoManager
+import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 
 /**
@@ -59,9 +63,74 @@ class FollowAdapter(val fragment: FollowFragment, var dataList: List<Follow.Item
                     holder.tvReplyCount.text = consumption.replyCount.toString()
                     holder.tvVideoDuration.visible()    //视频播放后，复用tvVideoDuration直接隐藏了
                     holder.tvVideoDuration.text = duration.conversionVideoDuration()
+
+                    fragment.activity?.let {
+                        CommendAdapter.startAutoPlay(
+                            it,
+                            holder.videoPlayer,
+                            position,
+                            playUrl,
+                            cover.feed,
+                            TAG,
+                            object : GSYSampleCallBack() {
+                                override fun onPrepared(url: String?, vararg objects: Any?) {
+                                    super.onPrepared(url, *objects)
+                                    holder.tvVideoDuration.gone()
+                                    GSYVideoManager.instance().isNeedMute = true
+                                }
+
+                                override fun onClickResume(url: String?, vararg objects: Any?) {
+                                    super.onClickResume(url, *objects)
+                                    holder.tvVideoDuration.gone()
+                                }
+
+                                override fun onClickBlank(url: String?, vararg objects: Any?) {
+                                    super.onClickBlank(url, *objects)
+                                    holder.tvVideoDuration.visible()
+                                    VideoActivity.start(
+                                        it,
+                                        VideoActivity.VideoInfo(
+                                            id,
+                                            playUrl,
+                                            title,
+                                            description,
+                                            category,
+                                            library,
+                                            consumption,
+                                            cover,
+                                            author!!,
+                                            webUrl
+                                        )
+                                    )
+                                }
+                            })
+                    }
+
+                    holder.let {
+                        setOnClickListener(it.videoPlayer.thumbImageView, it.itemView, it.ivCollectionCount, it.tvCollectionCount, it.ivFavorites, it.tvFavorites, it.ivShare)
+                        {
+                            when (this) {
+                                it.videoPlayer.thumbImageView, it.itemView -> {
+                                    fragment.activity?.let { it1 ->
+                                        VideoActivity.start(
+                                            it1, VideoActivity.VideoInfo(
+                                                item.data.content.data.id, playUrl, title, description, category, library, consumption, cover, author!!, webUrl
+                                            )
+                                        )
+                                    }
+                                }
+                                it.ivCollectionCount, it.tvCollectionCount, it.ivFavorites, it.tvFavorites -> {
+                                  //  LoginActivity.start(fragment.activity)
+                                }
+//                                it.ivShare -> {
+//                                    showDialogShare(fragment.activity, getShareContent(item))
+//                                }
+                            }
+                        }
+                    }
                 }
 
-                //TODO
+
             }
             else -> {
                 holder.itemView.gone()
