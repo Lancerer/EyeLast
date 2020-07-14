@@ -101,4 +101,12 @@ dependencies {
 
     //leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
+    // RxPermissions
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    //viewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    //photoView
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
 }

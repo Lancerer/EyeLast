@@ -21,6 +21,7 @@ import com.lancer.eyelast.utils.InjectorUtil
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
 
+//TODO 宽度设计
 class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBinding>(),
     OnNextWithErrorListener<CommunityRecommend> {
     init {
@@ -53,7 +54,6 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
 
     private lateinit var mAdapter: RecommendAdapter
 
-    private var dataList = ArrayList<CommunityRecommend.Item>()
 
     private var nextPageUrl: String? = null
 
@@ -69,7 +69,7 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
     }
 
     override fun initView() {
-        mAdapter = RecommendAdapter(this, dataList)
+        mAdapter = RecommendAdapter(this)
         binding.recyclerView.adapter = mAdapter
         val mainLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mainLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
@@ -101,12 +101,11 @@ class RecommendFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
 
         when (binding.refreshLayout.state) {
             RefreshState.None, RefreshState.Refreshing -> {
-                dataList.clear()
-                dataList.addAll(response!!.itemList)
+                mAdapter.data.clear()
+                mAdapter.addData(response!!.itemList)
             }
             RefreshState.Loading -> {
-                dataList.addAll(response!!.itemList)
-                mAdapter.notifyDataSetChanged()
+                mAdapter.addData(response!!.itemList)
             }
             else -> {
             }

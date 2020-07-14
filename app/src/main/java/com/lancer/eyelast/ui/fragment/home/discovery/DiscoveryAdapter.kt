@@ -15,12 +15,17 @@ import com.lancer.eyelast.Const
 import com.lancer.eyelast.R
 import com.lancer.eyelast.bean.Discovery
 import com.lancer.eyelast.extension.*
+import com.lancer.eyelast.ui.activity.login.LoginActivity
+import com.lancer.eyelast.ui.activity.video.VideoActivity
+import com.lancer.eyelast.ui.activity.video.VideoActivity.Companion.start
 import com.lancer.eyelast.ui.fragment.home.commend.CommendAdapter
 import com.lancer.eyelast.ui.fragment.home.daily.DailyAdapter
 import com.lancer.eyelast.utils.ActionUrl
 import com.lancer.eyelast.utils.GlobalUtil
+import com.lancer.eyelast.widget.CoverVideoPlayer
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
+import com.shuyu.gsyvideoplayer.listener.VideoAllCallBack
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.BaseBannerAdapter
 
@@ -53,7 +58,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
     }
 
 
-    private   inner class TextCardViewHeader5ViewHolder(val fragment: DiscoveryFragment) :
+    private inner class TextCardViewHeader5ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_HEADER5
@@ -71,12 +76,18 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 
             val follow = helper.getView<TextView>(R.id.tvFollow)
             follow.setOnClickListener {
-                //TODO
+                fragment.activity?.let { it1 -> LoginActivity.start(it1) }
+            }
+            helper.getView<TextView>(R.id.tvTitle5).setOnClickListener {
+                ActionUrl.process(fragment, item.data.actionUrl, item.data.text)
+            }
+            helper.getView<ImageView>(R.id.ivInto5).setOnClickListener {
+                ActionUrl.process(fragment, item.data.actionUrl, item.data.text)
             }
         }
     }
 
-   private inner class TextCardViewHeader7ViewHolder(val fragment: DiscoveryFragment) :
+    private inner class TextCardViewHeader7ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_HEADER7
@@ -86,12 +97,25 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         override fun convert(helper: BaseViewHolder, item: Discovery.Item) {
             helper.setText(R.id.tvTitle7, item.data.text)
             helper.setText(R.id.tvRightText7, item.data.rightText)
-            //TODO
+            helper.getView<TextView>(R.id.tvRightText7).setOnClickListener {
+                ActionUrl.process(
+                    fragment,
+                    item.data.actionUrl,
+                    "${item.data.text},${item.data.rightText}"
+                )
+            }
+            helper.getView<ImageView>(R.id.ivInto7).setOnClickListener {
+                ActionUrl.process(
+                    fragment,
+                    item.data.actionUrl,
+                    "${item.data.text},${item.data.rightText}"
+                )
+            }
         }
 
     }
 
-    private  inner class TextCardViewHeader8ViewHolder(val fragment: DiscoveryFragment) :
+    private inner class TextCardViewHeader8ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.TEXT_CARD_HEADER8
@@ -101,7 +125,12 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         override fun convert(helper: BaseViewHolder, item: Discovery.Item) {
             helper.setText(R.id.tvTitle8, item.data.text)
             helper.setText(R.id.tvRightText8, item.data.rightText)
-            //TODO
+            helper.getView<TextView>(R.id.tvRightText8).setOnClickListener {
+                ActionUrl.process(fragment, item.data.actionUrl, item.data.text)
+            }
+            helper.getView<ImageView>(R.id.ivInto8).setOnClickListener {
+                ActionUrl.process(fragment, item.data.actionUrl, item.data.text)
+            }
         }
     }
 
@@ -114,7 +143,12 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 
         override fun convert(helper: BaseViewHolder, item: Discovery.Item) {
             helper.setText(R.id.tvFooterRightText2, item.data.text)
-            //TODO
+            helper.getView<TextView>(R.id.tvFooterRightText2).setOnClickListener {
+                ActionUrl.process(fragment, item.data.actionUrl, item.data.text)
+            }
+            helper.getView<ImageView>(R.id.ivTooterInto2).setOnClickListener {
+                ActionUrl.process(fragment, item.data.actionUrl, item.data.text)
+            }
         }
     }
 
@@ -131,7 +165,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private  inner class FollowCardViewHolder(val fragment: DiscoveryFragment) :
+    private inner class FollowCardViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.FOLLOW_CARD
@@ -158,12 +192,36 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
                 R.id.ivChoiceness,
                 true
             )
-            //TODO
+            helper.itemView.setOnClickListener {
+                item.data.content.data.run {
+                    if (ad || author == null) {
+                        fragment.activity?.let { it1 -> VideoActivity.start(it1, id) }
+                    } else {
+                        fragment.activity?.let { it1 ->
+                            VideoActivity.start(
+                                it1,
+                                VideoActivity.VideoInfo(
+                                    id,
+                                    playUrl,
+                                    title,
+                                    description,
+                                    category,
+                                    library,
+                                    consumption,
+                                    cover,
+                                    author,
+                                    webUrl
+                                )
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 
 
-    private  inner class HorizontalScrollCardViewHolder(val fragment: DiscoveryFragment) :
+    private inner class HorizontalScrollCardViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.HORIZONTAL_SCROLL_CARD
@@ -195,7 +253,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private   inner class SpecialSquareCardCollectionViewHolder(val fragment: DiscoveryFragment) :
+    private inner class SpecialSquareCardCollectionViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.SPECIAL_SQUARE_CARD_COLLECTION
@@ -216,7 +274,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private  inner class ColumnCardListViewHolder(val fragment: DiscoveryFragment) :
+    private inner class ColumnCardListViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.COLUMN_CARD_LIST
@@ -236,7 +294,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private  inner class BannerViewHolder(val fragment: DiscoveryFragment) :
+    private inner class BannerViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.BANNER
@@ -252,7 +310,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private  inner class Banner3ViewHolder(val fragment: DiscoveryFragment) :
+    private inner class Banner3ViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.BANNER3
@@ -280,7 +338,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private  inner class VideoSmallCardViewHolder(fragment: DiscoveryFragment) :
+    private inner class VideoSmallCardViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.VIDEO_SMALL_CARD
@@ -299,7 +357,23 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
             helper.setText(R.id.tvVideoDuration, item.data.duration.conversionVideoDuration())
             helper.itemView.setOnClickListener {
                 item.data.run {
-                    //todo
+                    fragment.activity?.let { it1 ->
+                        VideoActivity.start(
+                            it1,
+                            VideoActivity.VideoInfo(
+                                id,
+                                playUrl,
+                                title,
+                                description,
+                                category,
+                                library,
+                                consumption,
+                                cover,
+                                author,
+                                webUrl
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -337,7 +411,7 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
         }
     }
 
-    private  inner class AutoPlayVideoAdViewHolder(val fragment: DiscoveryFragment) :
+    private inner class AutoPlayVideoAdViewHolder(val fragment: DiscoveryFragment) :
         BaseItemProvider<Discovery.Item>() {
         override val itemViewType: Int
             get() = Const.ItemViewType.AUTO_PLAY_VIDEO_AD
@@ -350,7 +424,30 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
                 ivAvatar.load(item.data.detail.icon)
                 helper.setText(R.id.tvDescription, item.data.detail.description)
                 helper.setText(R.id.tvTitle, item.data.detail.title)
-                //TODO
+                fragment.activity?.let {
+                    CommendAdapter.startAutoPlay(
+                        it,
+                        helper.getView(R.id.videoPlayer),
+                        position,
+                        url,
+                        imageUrl,
+                        CommendAdapter.TAG,
+                        object : GSYSampleCallBack() {
+                            override fun onPrepared(url: String?, vararg objects: Any?) {
+                                super.onPrepared(url, *objects)
+                                GSYVideoManager.instance().isNeedMute = true
+                            }
+
+                            override fun onClickBlank(url: String?, vararg objects: Any?) {
+                                super.onClickBlank(url, *objects)
+                                ActionUrl.process(fragment, item.data.detail.actionUrl)
+                            }
+                        })
+                    helper.itemView.setOnClickListener {
+                        ActionUrl.process(fragment, item.data.detail.actionUrl)
+                    }
+                }
+
             }
         }
     }

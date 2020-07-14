@@ -16,7 +16,8 @@
 
 ### 第三方库使用以及一些知识点
 
-#### Fragment懒加载(旧版使用setUserVisibleHint，FragmentPageAdapter中的behavior设置为BEHAVIOR_SET_USER_VISIBLE_HINT，新版使用setMaxLifecycle，
+#### Fragment懒加载
+- (旧版使用setUserVisibleHint，FragmentPageAdapter中的behavior设置为BEHAVIOR_SET_USER_VISIBLE_HINT，新版使用setMaxLifecycle，
 FragmentPagerAdapter中的behavior设置为BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
 
 #### SmartRefreshLayout的使用
@@ -85,6 +86,9 @@ refreshLayout.setRefreshHeader(new BezierRadarHeader(this).setEnableHorizontalDr
 //设置 Footer 为 球脉冲 样式
 refreshLayout.setRefreshFooter(new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale));
 ```
+
+
+
 #### BaseRecyclerViewAdapterHelper的使用
 - 多布局BaseProviderMultiAdapter
 ```kotlin
@@ -143,11 +147,22 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 #### multiple-status_view使用
 - 外层就是一个RelativeLayout，将他作为最外层的布局然后包裹内容即可，然后就是设置各种状态的布局了
 
-#### TODO 
-- 加载问题，现在切换界面后原来的界面整个界面全部更新了，需要查看原因
-- 头像选择
-- 图片选择，多图选择
-- videoActivity
-- 状态栏
+#### 使用到的技术 
+- 头像选择:原生方案
+- 图片选择，多图选择 :PictureSelector
+- videoActivity : 
+- 状态栏:immersionBar
 - webView
 - GSYVideoPlayer
+- fileProvider
+- 权限管理:RxPermission
+- animation使用:LoginActivity
+- 社区模块-推荐列表中的viewPager2
+- photoView
+
+
+### TODO 
+- 加载问题，现在切换界面后原来的界面整个界面全部更新了，需要查看原因
+- 状态栏
+- 
+
