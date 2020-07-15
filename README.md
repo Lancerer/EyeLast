@@ -144,9 +144,15 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 #### RxJava和RxAndroid的使用
 #### Glide的使用
 #### viewModel的使用
+
 #### multiple-status_view使用
 - 外层就是一个RelativeLayout，将他作为最外层的布局然后包裹内容即可，然后就是设置各种状态的布局了
 
+### GSYVideoPlayer
+![](https://github.com/Lancerer/GSYVideoPlayer/blob/master/img/StructureChart2.jpg)
+- 具体详见PlayerActivity
+
+### 
 #### 使用到的技术 
 - 头像选择:原生方案
 - 图片选择，多图选择 :PictureSelector
@@ -164,5 +170,5 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 ### TODO 
 - 加载问题，现在切换界面后原来的界面整个界面全部更新了，需要查看原因
 - 状态栏
-- 
+- 全局view状态的管理(empty,loading,error,networkError)
 
