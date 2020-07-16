@@ -39,8 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-
-
+        <activity android:name=".demo.bar.BarActivity"></activity>
         <!-- 关于全面屏与刘海，状态栏配置相关 -->
         <meta-data
             android:name="android.max_aspect"
@@ -52,15 +51,10 @@
             android:name="notch.config"
             android:value="portrait|landscape" />
 
-
-        <activity android:name=".demo.player.PlayerActivity">
-
-        </activity>
+        <activity android:name=".demo.player.PlayerActivity"></activity>
         <activity
             android:name=".demo.player.ControlActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode">
-
-        </activity>
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"></activity>
         <activity
             android:name=".demo.player.EmptyActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode" />
@@ -85,7 +79,6 @@
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

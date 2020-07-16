@@ -2,6 +2,7 @@ package com.lancer.eyelast.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.lancer.eyelast.R
 import com.lancer.eyelast.base.BaseActivity
 import com.lancer.eyelast.databinding.ActivityMainBinding
+import com.lancer.eyelast.demo.bar.BarActivity
 import com.lancer.eyelast.demo.player.PlayerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,6 +36,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         floatButton.setOnClickListener {
             startActivity(Intent(this, PlayerActivity::class.java))
+        }
+        floatButton.setOnLongClickListener {
+            startActivity(Intent(this, BarActivity::class.java))
+            return@setOnLongClickListener true
         }
     }
 
