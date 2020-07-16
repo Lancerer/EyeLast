@@ -153,6 +153,9 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
 
     override fun initLayout(): Int = R.layout.activity_video
 
+    override fun setStatusBarColor() {
+        //TODO 取消statusBar顔色，不使用super方法
+    }
 
     @Parcelize
     data class VideoInfo(

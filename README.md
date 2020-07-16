@@ -142,21 +142,49 @@ class DiscoveryAdapter(fragment: DiscoveryFragment) : BaseProviderMultiAdapter<D
 ```
 
 #### RxJava和RxAndroid的使用
+
 #### Glide的使用
+
 #### viewModel的使用
 
 #### multiple-status_view使用
 - 外层就是一个RelativeLayout，将他作为最外层的布局然后包裹内容即可，然后就是设置各种状态的布局了
 
 ### GSYVideoPlayer
-![](https://github.com/Lancerer/GSYVideoPlayer/blob/master/img/StructureChart2.jpg)
+![](https://raw.githubusercontent.com/Lancerer/GSYVideoPlayer/master/img/StructureChart2.jpg)
 - 具体详见PlayerActivity
 
-### 
+### android状态栏
+- **情况一:当我们把ActionBar隐藏后那么整个布局就只剩下：layout+statusBar，这时候我们想要statusBar和Layout颜色一致这样布局才看的舒服**
+![](https://upload-images.jianshu.io/upload_images/7048342-cbbb1a88e3ee8260.png?imageMogr2/auto-orient/strip|imageView2/2/w/1080/format/webp)
+- **情况二:直接隐藏StatusBar和ActionBar，就只剩下Layout，这样就是全屏模式，一般会出现在视频播放界面**
+![](https://upload-images.jianshu.io/upload_images/7048342-3841cfb78965626b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1080/format/webp)
+- **情况一存在两个问题**
+    - 当我们的布局是浅色时候，statusBar的颜色也会是变成浅色，但是statusBar的字体是白色的，这样会导致statusBar中的文字看不清楚
+    - 当只剩下StatusBar和Layout的时候，可能Layout的布局会和StatusBar布局重叠
+
+```xml
+<!--透明状态栏-->
+<style name="AppTheme" parent="BaseTheme">
+    <!--设置透明状态栏-->
+    <item name="android:windowTranslucentStatus">true</item>
+    <!--解决视图延伸导致重叠问题-->
+    <item name="android:fitsSystemWindows">true</item>
+</style>
+
+<!--全屏模式-->
+<style name="AppTheme" parent="BaseTheme">
+      <item name="android:windowTranslucentStatus">true</item>
+        //如果要取消标题栏
+      <item name="windowActionBar">false</item>
+       <item name="windowNoTitle">true</item>
+</style>
+```
+
+
 #### 使用到的技术 
 - 头像选择:原生方案
 - 图片选择，多图选择 :PictureSelector
-- videoActivity : 
 - 状态栏:immersionBar
 - webView
 - GSYVideoPlayer

@@ -59,7 +59,7 @@ class DiscoveryFragment : BaseFragment<LayoutCommonMultipleRefreshRecyclerBindin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         multipleStatusView = binding.multipleStatusView
-        multipleStatusView?.showEmpty()
+        multipleStatusView?.showLoading()
     }
 
     override fun onNext(response: Discovery?) {

@@ -1,10 +1,14 @@
 package com.lancer.eyelast.base
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.gyf.immersionbar.ImmersionBar
+import com.lancer.eyelast.R
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: V
@@ -15,6 +19,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(name, "onCreate")
         binding = DataBindingUtil.setContentView(this, initLayout())
+        setStatusBarColor()
         initView()
         initData()
     }
@@ -50,4 +55,12 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     abstract fun initView()
     abstract fun initData()
     abstract fun initLayout(): Int
+
+
+    open fun setStatusBarColor() {
+        ImmersionBar.with(this).autoStatusBarDarkModeEnable(true, 0.2f).fitsSystemWindows(true)
+            .statusBarColorInt(Color.WHITE)
+            .navigationBarColorInt(Color.WHITE)
+            .init()
+    }
 }

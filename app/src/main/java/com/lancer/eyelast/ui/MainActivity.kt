@@ -9,14 +9,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.lancer.eyelast.R
+import com.lancer.eyelast.base.BaseActivity
+import com.lancer.eyelast.databinding.ActivityMainBinding
 import com.lancer.eyelast.demo.player.PlayerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun initView() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
@@ -36,6 +35,11 @@ class MainActivity : AppCompatActivity() {
         floatButton.setOnClickListener {
             startActivity(Intent(this, PlayerActivity::class.java))
         }
-
     }
+
+    override fun initData() {
+    }
+
+    override fun initLayout(): Int = R.layout.activity_main
+
 }

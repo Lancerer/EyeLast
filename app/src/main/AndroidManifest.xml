@@ -39,6 +39,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+
+
+        <!-- 关于全面屏与刘海，状态栏配置相关 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
+
         <activity android:name=".demo.player.PlayerActivity">
 
         </activity>
