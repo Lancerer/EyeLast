@@ -111,4 +111,7 @@ dependencies {
     //immersionbar
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 
+    //PictureSelector
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'
+
 }
